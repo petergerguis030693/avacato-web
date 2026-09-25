@@ -25,14 +25,12 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [svcOpen, setSvcOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-  const pathname = usePathname() || "";
+  const pathname = (usePathname() || "/").replace(/\/$/, "") || "/";
 
   const isHome = pathname === "/";
-  const isServices =
-    pathname === "/services/" || pathname.startsWith("/services/");
-  const isAbout = pathname === "/about/" || pathname.startsWith("/about/");
-  const isContact =
-    pathname === "/contact/" || pathname.startsWith("/contact/");
+  const isServices = pathname === "/services" || pathname.startsWith("/services/");
+  const isAbout = pathname === "/about" || pathname.startsWith("/about/");
+  const isContact = pathname === "/contact" || pathname.startsWith("/contact/");
 
   useEffect(() => {
     if (!open) return;
@@ -249,7 +247,7 @@ export function Header() {
               <Link
                 key={s.slug}
                 href={s.href}
-                className={`rounded-card px-4 py-2.5 text-base hover:bg-white/5 ${pathname === s.href ? "text-gold" : "text-white/90"}`}
+                className={`rounded-card px-4 py-2.5 text-base hover:bg-white/5 ${pathname === s.href.replace(/\/$/, "") ? "text-gold" : "text-white/90"}`}
                 onClick={() => setOpen(false)}
               >
                 {s.title}
