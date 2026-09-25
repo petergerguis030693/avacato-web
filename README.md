@@ -4,7 +4,7 @@ Egyptian law firm website · Arabic RTL · Next.js static export.
 
 - **Live:** https://avacato.smarttech-connection.com
 - **Stack:** Next.js App Router, `output: 'export'`, Tailwind, Cairo font
-- **Brand:** Navy `#0B1C2C` + Gold `#C9A227`
+- **Brand:** Navy `#14243A` + Gold `#B89755` · surfaces `#FAF9F6` / `#F2F4F6` · footer `#0B1726`
 
 ## Develop
 

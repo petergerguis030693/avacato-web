@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader image="contact">
-        <h1 className="text-3xl font-bold text-cream sm:text-4xl">
+        <h1 className="text-3xl font-bold text-white sm:text-4xl">
           {site.contact.h1}
         </h1>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:max-w-xl">
@@ -26,7 +26,7 @@ export default function ContactPage() {
           </a>
           <a
             href={site.whatsappHref}
-            className="btn-ghost min-h-12 flex-1 text-center text-base"
+            className="btn-whatsapp min-h-12 flex-1 text-center text-base"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -36,7 +36,7 @@ export default function ContactPage() {
       </PageHeader>
 
       <div className="mx-auto max-w-6xl px-4 py-12 pb-16 sm:px-6 sm:py-16">
-        <div className="space-y-2 text-cream/90">
+        <div className="space-y-2 text-ink">
           {site.addressLines.map((l) => (
             <p key={l}>{l}</p>
           ))}
@@ -45,7 +45,7 @@ export default function ContactPage() {
         <p className="mt-4">
           <a
             href={site.mapHref}
-            className="text-gold-bright underline decoration-gold/50 hover:text-gold"
+            className="text-gold-ink underline decoration-gold/50 hover:text-navy"
             target="_blank"
             rel="noopener noreferrer"
           >

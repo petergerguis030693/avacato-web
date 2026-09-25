@@ -12,7 +12,7 @@ export function MobileTelBar() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-[#0B1C2C] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-navy p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden"
       role="navigation"
       aria-label="تواصل سريع"
     >
@@ -26,7 +26,7 @@ export function MobileTelBar() {
         </a>
         <a
           href={site.whatsappHref}
-          className="btn-ghost w-full text-center text-sm"
+          className="btn-whatsapp w-full text-center text-sm"
           target="_blank"
           rel="noopener noreferrer"
         >

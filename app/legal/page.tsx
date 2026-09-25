@@ -12,21 +12,21 @@ export default function LegalPage() {
   return (
     <>
       <PageHeader image="legal" compact>
-        <h1 className="text-2xl font-bold text-cream sm:text-3xl">
+        <h1 className="text-2xl font-bold text-white sm:text-3xl">
           بيانات قانونية
         </h1>
       </PageHeader>
 
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-        <section className="space-y-3 text-cream/90">
-          <h2 className="text-xl font-bold text-gold">بيانات التواصل</h2>
+        <section className="space-y-3 text-ink">
+          <h2 className="text-xl font-bold text-navy">بيانات التواصل</h2>
           <p>
             <span className="text-muted">الاسم التجاري: </span>
             مكتب الأفوكاتو للمحاماة والاستشارات القانونية
           </p>
           <p>
             <span className="text-muted">الهاتف: </span>
-            <a href={site.phoneHref} className="text-gold-bright" dir="ltr">
+            <a href={site.phoneHref} className="text-gold-ink" dir="ltr">
               <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
           </p>
@@ -36,8 +36,8 @@ export default function LegalPage() {
           </p>
         </section>
 
-        <section className="mt-10 space-y-3 text-cream/90">
-          <h2 className="text-xl font-bold text-gold">إخلاء مسؤولية</h2>
+        <section className="mt-10 space-y-3 text-ink">
+          <h2 className="text-xl font-bold text-navy">إخلاء مسؤولية</h2>
           <p className="leading-relaxed">
             المحتوى على هذا الموقع لأغراض تعريفية عامة ولا يُعد استشارة قانونية ملزمة.
             للحصول على استشارة خاصة بحالتكم، يرجى التواصل مباشرة مع المكتب.

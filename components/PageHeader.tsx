@@ -41,9 +41,7 @@ export function PageHeader({
     ? "min-h-[clamp(140px,22vh,220px)] md:min-h-[clamp(160px,24vh,240px)]"
     : "min-h-[clamp(200px,32vh,360px)] md:min-h-[clamp(280px,38vh,480px)]";
 
-  const overlayCls = compact
-    ? "bg-[#0B1C2C]/40"
-    : "bg-[#0B1C2C]/60";
+  const overlayCls = compact ? "bg-navy/40" : "bg-navy/60";
 
   return (
     <section
@@ -59,7 +57,7 @@ export function PageHeader({
           sizes="100vw"
         />
         <div className={`absolute inset-0 ${overlayCls}`} />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1C2C]/25 via-transparent to-[#0B1C2C]/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/25 via-transparent to-navy/55" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6">
@@ -67,7 +65,7 @@ export function PageHeader({
       </div>
 
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-px bg-[#C9A227]/40"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-px bg-gold/40"
         aria-hidden
       />
     </section>

@@ -2,15 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Brand tokens — ~70% warm-white / 25% navy / 5% gold.
+   Hex is the source of truth; *-rgb channels exist so Tailwind
+   opacity modifiers (bg-navy/60, border-gold/30) keep working. */
 :root {
-  --color-navy: #0b1c2c;
-  --color-navy-deep: #061018;
-  --color-gold: #c9a227;
-  --color-gold-bright: #e4c65a;
-  --color-cream: #f4efe6;
-  --color-ink: #1a1a1a;
+  --color-navy: #14243a;
+  --color-navy-rgb: 20 36 58;
+
+  --color-navy-deep: #0b1726;
+  --color-navy-deep-rgb: 11 23 38;
+
+  --color-gold: #b89755;
+  --color-gold-rgb: 184 151 85;
+
+  --color-gold-hover: #c9a86a;
+  --color-gold-hover-rgb: 201 168 106;
+
+  --color-gold-ink: #8f7340;
+  --color-gold-ink-rgb: 143 115 64;
+
+  --color-bg: #faf9f6;
+  --color-bg-rgb: 250 249 246;
+
+  --color-bg-alt: #f2f4f6;
+  --color-bg-alt-rgb: 242 244 246;
+
+  --color-ink: #252b33;
+  --color-ink-rgb: 37 43 51;
+
+  --color-muted: #5c6570;
+  --color-muted-rgb: 92 101 112;
+
+  --color-on-dark: #ffffff;
+  --color-on-dark-rgb: 255 255 255;
+
+  --color-on-dark-muted: #c5cbd3;
+  --color-on-dark-muted-rgb: 197 203 211;
+
+  --color-footer: #0b1726;
+  --color-footer-rgb: 11 23 38;
+
   --color-white: #ffffff;
-  --color-muted: #8a93a0;
+  --color-white-rgb: 255 255 255;
+
+  /* Alias: warm-white surface + off-white on navy */
+  --color-cream: var(--color-bg);
+  --color-cream-rgb: var(--color-bg-rgb);
+
+  --color-gold-bright: var(--color-gold-hover);
+  --color-gold-bright-rgb: var(--color-gold-hover-rgb);
+
+  /* WhatsApp brand green — do not map to navy/gold */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-rgb: 37 211 102;
+  --color-whatsapp-text: var(--color-navy);
 }
 
 html {
@@ -24,8 +69,8 @@ html {
 }
 
 body {
-  background: var(--color-navy-deep);
-  color: var(--color-white);
+  background: var(--color-bg);
+  color: var(--color-ink);
   font-family: var(--font-cairo), Tahoma, Arial, sans-serif;
   font-size: 17px;
   line-height: 1.75;
@@ -43,6 +88,7 @@ body {
   display: inline-block;
 }
 
+/* Primary: gold bg + navy text */
 .btn-gold {
   display: inline-flex;
   align-items: center;
@@ -51,15 +97,34 @@ body {
   min-height: 44px;
   padding: 0.75rem 1.5rem;
   background: var(--color-gold);
-  color: var(--color-navy-deep);
+  color: var(--color-navy);
   border-radius: 9999px;
   font-weight: 700;
   transition: background 0.15s ease, color 0.15s ease;
 }
 .btn-gold:hover {
-  background: var(--color-gold-bright);
+  background: var(--color-gold-hover);
 }
 
+/* Secondary: navy bg + white text (light surfaces) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-navy);
+  color: var(--color-on-dark);
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btn-secondary:hover {
+  background: var(--color-navy-deep);
+}
+
+/* Ghost / on-dark outline (hero, navy bands) */
 .btn-ghost {
   display: inline-flex;
   align-items: center;
@@ -68,26 +133,44 @@ body {
   min-height: 44px;
   padding: 0.75rem 1.5rem;
   background: transparent;
-  color: var(--color-white);
-  border: 1px solid rgba(201, 162, 39, 0.7);
+  color: var(--color-on-dark);
+  border: 1px solid rgb(var(--color-on-dark-rgb) / 0.45);
   border-radius: 9999px;
   font-weight: 600;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .btn-ghost:hover {
-  border-color: var(--color-gold-bright);
-  color: var(--color-gold-bright);
-  background: rgba(201, 162, 39, 0.08);
+  border-color: var(--color-gold);
+  color: var(--color-gold-hover);
+  background: rgb(var(--color-gold-rgb) / 0.08);
+}
+
+/* WhatsApp — official green, navy label for AA contrast */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-whatsapp);
+  color: var(--color-whatsapp-text);
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: filter 0.15s ease;
+}
+.btn-whatsapp:hover {
+  filter: brightness(1.06);
 }
 
 .card {
-  background: rgba(11, 28, 44, 0.9);
-  border: 1px solid rgba(201, 162, 39, 0.25);
+  background: var(--color-white);
+  border: 1px solid rgb(var(--color-navy-rgb) / 0.08);
   border-radius: 8px;
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 .card:hover {
-  border-color: rgba(201, 162, 39, 0.55);
+  border-color: rgb(var(--color-gold-rgb) / 0.45);
 }
 
 /* UI Spec v1.5.1 — Home Hero only (`/`): shift the copy block to the visual

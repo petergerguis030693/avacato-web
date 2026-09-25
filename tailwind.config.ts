@@ -8,13 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: "#0B1C2C",
-        "navy-deep": "#061018",
-        gold: "#C9A227",
-        "gold-bright": "#E4C65A",
-        cream: "#F4EFE6",
-        ink: "#1A1A1A",
-        muted: "#8A93A0",
+        navy: "rgb(var(--color-navy-rgb) / <alpha-value>)",
+        "navy-deep": "rgb(var(--color-navy-deep-rgb) / <alpha-value>)",
+        gold: "rgb(var(--color-gold-rgb) / <alpha-value>)",
+        "gold-bright": "rgb(var(--color-gold-hover-rgb) / <alpha-value>)",
+        "gold-ink": "rgb(var(--color-gold-ink-rgb) / <alpha-value>)",
+        cream: "rgb(var(--color-cream-rgb) / <alpha-value>)",
+        ink: "rgb(var(--color-ink-rgb) / <alpha-value>)",
+        muted: "rgb(var(--color-muted-rgb) / <alpha-value>)",
+        "on-dark": "rgb(var(--color-on-dark-rgb) / <alpha-value>)",
+        "on-dark-muted": "rgb(var(--color-on-dark-muted-rgb) / <alpha-value>)",
+        "surface-alt": "rgb(var(--color-bg-alt-rgb) / <alpha-value>)",
+        footer: "rgb(var(--color-footer-rgb) / <alpha-value>)",
+        whatsapp: "rgb(var(--color-whatsapp-rgb) / <alpha-value>)",
       },
       fontFamily: {
         cairo: ["var(--font-cairo)", "Tahoma", "Arial", "sans-serif"],
