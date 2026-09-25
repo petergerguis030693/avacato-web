@@ -17,6 +17,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background: var(--color-navy-deep);
   color: var(--color-white);
@@ -90,5 +96,61 @@ body {
 @media (min-width: 640px) {
   .section-pad {
     padding-block: 5rem;
+  }
+}
+
+/* Spec v1.5 service-detail: min(1120px, 100% − gutter) */
+.detail-wrap {
+  width: min(1120px, 100%);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (min-width: 640px) {
+  .detail-wrap {
+    padding-inline: 1.5rem;
+  }
+}
+
+.detail-zone {
+  padding-block: 2.5rem;
+}
+.detail-zone:first-child {
+  padding-top: 0;
+}
+.detail-zone:last-child {
+  padding-bottom: 0;
+}
+@media (min-width: 1024px) {
+  .detail-zone {
+    padding-block: 3.25rem;
+  }
+  .detail-zone:first-child {
+    padding-top: 0;
+  }
+  .detail-zone:last-child {
+    padding-bottom: 0;
+  }
+}
+
+/* Scroll-reveal: visible by default. .js-reveal is added only by JS for
+   off-screen nodes so client navigation cannot leave content at opacity 0. */
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal].js-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 450ms ease,
+      transform 450ms ease;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal].js-reveal.is-revealed,
+  [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
   }
 }
