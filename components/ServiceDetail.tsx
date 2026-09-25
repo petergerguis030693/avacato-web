@@ -26,7 +26,7 @@ function DualCta({
         target="_blank"
         rel="noopener noreferrer"
       >
-        {site.labels.whatsapp}
+        {site.labels.talkWhatsapp}
       </a>
     </div>
   );
@@ -95,7 +95,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </ul>
               </section>
 
-              {/* إيه بنخلّص */}
+              {/* نطاق العمل */}
               <section
                 className="detail-zone"
                 data-reveal
@@ -122,7 +122,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </ul>
               </section>
 
-              {/* الإعداد — exactly 3 steps */}
+              {/* خطوات العمل — exactly 3 steps */}
               <section className="detail-zone" data-reveal>
                 <h2 className="text-2xl font-bold text-gold sm:text-3xl">
                   {site.detail.steps}
@@ -158,7 +158,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </ol>
               </section>
 
-              {/* لمين */}
+              {/* لمن هذه الخدمة */}
               <section className="detail-zone" data-reveal>
                 <h2 className="text-2xl font-bold text-gold sm:text-3xl">
                   {site.detail.audience}
@@ -178,7 +178,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </p>
               </section>
 
-              {/* أسئلة سريعة */}
+              {/* أسئلة متكررة */}
               <section className="detail-zone" data-reveal>
                 <h2 className="text-2xl font-bold text-gold sm:text-3xl">
                   {site.detail.faq}

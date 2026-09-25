@@ -8,7 +8,7 @@ import { painPoints, site } from "../lib/site";
 export const metadata: Metadata = {
   title: { absolute: "مكتب الأفوكاتو | محاماة واستشارات قانونية — باسوس" },
   description:
-    "تأسيس شركات، تراخيص، قضايا، شهر عقاري — بنخلّص أوراقك ونحفظ حقك. اتصل: 01123027887",
+    "تأسيس شركات، تراخيص، قضايا، شهر عقاري — نتولى إنجاز معاملاتكم ونحفظ حقوقكم. اتصل: 01123027887",
   alternates: { canonical: "/" },
 };
 
@@ -29,17 +29,17 @@ export default function HomePage() {
             محاماة واستشارات قانونية — باسوس
           </p>
           <h1 className="max-w-3xl text-3xl font-bold leading-tight text-cream sm:text-5xl">
-            أوراقك تتظبط… وحقك محفوظ
+            أوراقكم تُرتَّب… وحقوقكم محفوظة
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted sm:text-lg">
-            من تأسيس الشركة لحد التراخيص والقضايا والشهر العقاري — بنمشّي الإجراءات معاك لحد ما تاخد النتيجة في إيدك.
+            من تأسيس الشركة إلى التراخيص والقضايا والشهر العقاري — نتولى الإجراءات معكم حتى تستلمون النتيجة جاهزة.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={site.phoneHref} className="btn-gold" dir="ltr">
               اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
             <Link href="/services/" className="btn-ghost">
-              شوف خدماتنا
+              اطّلعوا على خدماتنا
             </Link>
           </div>
           <p className="mt-4 text-sm text-muted">
@@ -50,7 +50,7 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              واتساب
+              تواصل عبر واتساب
             </a>
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function HomePage() {
       {/* 3. Pain */}
       <section className="section-pad bg-cream text-ink">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold sm:text-3xl">عندك سؤال قانوني؟</h2>
+          <h2 className="text-2xl font-bold sm:text-3xl">هل لديكم سؤال قانوني؟</h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {painPoints.map((q) => (
               <li
@@ -74,7 +74,7 @@ export default function HomePage() {
             ))}
           </ul>
           <p className="mt-8 text-center text-lg font-bold">
-            كلمنا الآن —{" "}
+            اتصلوا الآن —{" "}
             <a href={site.phoneHref} className="text-navy underline decoration-gold" dir="ltr">
               <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
@@ -82,7 +82,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. الإعداد */}
+      {/* 4. خطوات العمل */}
       <section className="section-pad bg-navy-deep" aria-labelledby="process-h2">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="mb-2 text-sm font-semibold tracking-wide text-gold">
@@ -118,7 +118,7 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              أو واتساب
+              أو تواصل عبر واتساب
             </a>
           </p>
         </div>
@@ -194,10 +194,10 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="text-2xl font-bold text-cream sm:text-3xl">
-            جاهز تبدأ؟ كلم مكتب الأفوكاتو دلوقتي
+            جاهزون للبدء؟ تواصلوا مع مكتب الأفوكاتو
           </h2>
           <p className="mt-3 text-muted">
-            دقيقة مكالمة أوضح من أسبوع دوران على النت.
+            مكالمة قصيرة أوضح من أيام من البحث دون نتيجة.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={site.phoneHref} className="btn-gold inline-flex" dir="ltr">
@@ -209,7 +209,7 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              واتساب
+              تواصل عبر واتساب
             </a>
           </div>
         </div>
