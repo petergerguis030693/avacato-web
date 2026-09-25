@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "../components/PageHeader";
-import { ServiceCard } from "../components/ServiceCard";
-import { painPoints, services, site } from "../lib/site";
+import { HomeServicesFreer } from "../components/FreerServices";
+import { painPoints, site } from "../lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "مكتب الأفوكاتو | محاماة واستشارات قانونية — باسوس" },
@@ -53,20 +53,8 @@ export default function HomePage() {
           </p>
       </PageHeader>
 
-      {/* 2. Services grid */}
-      <section className="section-pad bg-navy-deep">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-cream sm:text-3xl">خدماتنا</h2>
-          <p className="mt-2 max-w-2xl text-muted">
-            من تأسيس الشركة لحد التراخيص والقضايا — كل اللي يخص شغلك القانوني.
-          </p>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <ServiceCard key={s.slug} service={s} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 2. Services — freer layout v1.4 */}
+      <HomeServicesFreer />
 
       {/* 3. Pain */}
       <section className="section-pad bg-cream text-ink">
@@ -139,11 +127,11 @@ export default function HomePage() {
           <p id="trust-label" className="mb-6 text-center text-sm font-semibold tracking-wide text-gold">
             {site.trustLabel}
           </p>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {site.trustProof.map((card) => (
+          <div className="grid gap-8 sm:grid-cols-3 sm:gap-10">
+            {site.trustProof.map((card, i) => (
               <div
                 key={card.title}
-                className="rounded-card border border-gold/20 bg-navy-deep px-6 py-8"
+                className={`px-1 py-2 sm:px-2 ${i > 0 ? "sm:border-s sm:border-gold/25 sm:ps-8" : ""}`}
               >
                 <p className="text-lg font-bold text-gold">{card.title}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{card.body}</p>
