@@ -16,11 +16,10 @@ const cairo = Cairo({
 export const metadata: Metadata = {
   metadataBase: new URL(site.host),
   title: {
-    default: "مكتب الأفوكاتو | محاماة واستشارات قانونية — باسوس",
+    default: site.home.metaTitle,
     template: "%s | مكتب الأفوكاتو",
   },
-  description:
-    "تأسيس شركات، تراخيص، قضايا، شهر عقاري — نتولى إنجاز معاملاتكم ونحفظ حقوقكم. اتصل: 01123027887",
+  description: site.home.metaDescription,
   openGraph: {
     type: "website",
     locale: "ar_EG",

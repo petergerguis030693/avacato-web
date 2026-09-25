@@ -1,14 +1,45 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { HomeServicesFreer } from "../components/FreerServices";
 import { painPoints, site } from "../lib/site";
 
+const COPY_LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+/** Home-only: render copy-file markdown links inside existing text slots. */
+function CopyLinks({
+  text,
+  className,
+}: {
+  text: string;
+  className: string;
+}) {
+  const nodes: ReactNode[] = [];
+  let last = 0;
+  let match: RegExpExecArray | null;
+  const re = new RegExp(COPY_LINK_RE.source, "g");
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) {
+      nodes.push(text.slice(last, match.index));
+    }
+    nodes.push(
+      <Link key={`${match[2]}-${match.index}`} href={match[2]} className={className}>
+        {match[1]}
+      </Link>,
+    );
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) {
+    nodes.push(text.slice(last));
+  }
+  return <>{nodes}</>;
+}
+
 export const metadata: Metadata = {
-  title: { absolute: "مكتب الأفوكاتو | محاماة واستشارات قانونية — باسوس" },
-  description:
-    "تأسيس شركات، تراخيص، قضايا، شهر عقاري — نتولى إنجاز معاملاتكم ونحفظ حقوقكم. اتصل: 01123027887",
+  title: { absolute: site.home.metaTitle },
+  description: site.home.metaDescription,
   alternates: { canonical: "/" },
 };
 
@@ -29,30 +60,30 @@ export default function HomePage() {
             محاماة واستشارات قانونية — باسوس
           </p>
           <h1 className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-5xl">
-            أوراقكم تُرتَّب… وحقوقكم محفوظة
+            {site.home.h1}
           </h1>
           <p className="mt-5 max-w-2xl text-base text-on-dark-muted sm:text-lg">
-            من تأسيس الشركة إلى التراخيص والقضايا والشهر العقاري — نتولى الإجراءات معكم حتى تستلمون النتيجة جاهزة.
+            <CopyLinks
+              text={site.home.lead}
+              className="text-gold-bright underline decoration-gold/40 hover:brightness-110"
+            />
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={site.phoneHref} className="btn-gold" dir="ltr">
               اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
-            <Link href="/services/" className="btn-ghost">
-              اطّلعوا على خدماتنا
-            </Link>
-          </div>
-          <p className="mt-4 text-sm text-on-dark-muted">
-            أو{" "}
             <a
               href={site.whatsappHref}
-              className="text-whatsapp underline decoration-whatsapp/40 hover:brightness-110"
+              className="btn-whatsapp"
               target="_blank"
               rel="noopener noreferrer"
             >
               تواصل عبر واتساب
             </a>
-          </p>
+            <Link href="/services/" className="btn-ghost">
+              اطّلعوا على خدماتنا
+            </Link>
+          </div>
         </div>
       </PageHeader>
 
@@ -172,11 +203,17 @@ export default function HomePage() {
                   </span>
                 </summary>
                 <p className="border-t border-navy/10 px-4 py-3 text-sm leading-relaxed text-muted">
-                  {item.a}
+                  <CopyLinks
+                    text={item.a}
+                    className="font-semibold text-navy underline decoration-gold/50 underline-offset-4 hover:text-gold-ink"
+                  />
                 </p>
               </details>
             ))}
           </div>
+          <p className="mt-6 text-sm leading-relaxed text-muted">
+            {site.home.disclaimer}
+          </p>
         </div>
       </section>
 
@@ -194,10 +231,10 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            جاهزون للبدء؟ تواصلوا مع مكتب الأفوكاتو
+            {site.home.ctaHeadline}
           </h2>
           <p className="mt-3 text-on-dark-muted">
-            مكالمة قصيرة أوضح من أيام من البحث دون نتيجة.
+            {site.home.ctaSub}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={site.phoneHref} className="btn-gold inline-flex" dir="ltr">
@@ -212,6 +249,9 @@ export default function HomePage() {
               تواصل عبر واتساب
             </a>
           </div>
+          <p className="mt-5 text-sm text-on-dark-muted">
+            {site.home.disclaimer}
+          </p>
         </div>
       </section>
     </>
