@@ -1,9 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { FeaturedRow } from "./FeaturedRow";
 import { PageHeader, type PageHeaderImageKey } from "./PageHeader";
 import { ServiceReveal } from "./ServiceReveal";
 import { getService, type Service, site } from "../lib/site";
+
+const COPY_LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+/** Renders copy-file markdown links with existing gold-ink underline tokens. */
+function CopyLinks({ text }: { text: string }) {
+  const nodes: ReactNode[] = [];
+  let last = 0;
+  let match: RegExpExecArray | null;
+  const re = new RegExp(COPY_LINK_RE.source, "g");
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) {
+      nodes.push(text.slice(last, match.index));
+    }
+    nodes.push(
+      <Link
+        key={`${match[2]}-${match.index}`}
+        href={match[2]}
+        className="font-semibold text-gold-ink underline decoration-gold/50 underline-offset-4 hover:text-navy"
+      >
+        {match[1]}
+      </Link>,
+    );
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) {
+    nodes.push(text.slice(last));
+  }
+  return <>{nodes}</>;
+}
 
 function DualCta({
   className = "",
@@ -122,6 +152,38 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </ul>
               </section>
 
+              {/* متى تحتاجون محاميًا — litigation only (Copy v7) */}
+              {service.whenYouNeed && (
+                <section className="detail-zone" data-reveal>
+                  <h2 className="text-2xl font-bold text-navy sm:text-3xl">
+                    {service.whenYouNeed.title}
+                  </h2>
+                  <ul className="mt-8 grid gap-6">
+                    {service.whenYouNeed.items.map((item, i) => (
+                      <li
+                        key={item.title}
+                        data-reveal
+                        data-reveal-delay={i * 50}
+                      >
+                        <h3 className="text-lg font-bold text-ink">
+                          {item.title}
+                        </h3>
+                        <span
+                          className="mt-2 block h-px w-12 bg-gold"
+                          aria-hidden
+                        />
+                        <p className="mt-3 text-base leading-relaxed text-ink">
+                          <CopyLinks text={item.body} />
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-8 text-base leading-relaxed text-ink">
+                    {service.whenYouNeed.softCta}
+                  </p>
+                </section>
+              )}
+
               {/* خطوات العمل — exactly 3 steps */}
               <section className="detail-zone" data-reveal>
                 <h2 className="text-2xl font-bold text-navy sm:text-3xl">
@@ -199,7 +261,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                         </span>
                       </summary>
                       <p className="border-t border-navy/10 px-4 py-3 text-sm leading-relaxed text-muted">
-                        {item.a}
+                        <CopyLinks text={item.a} />
                       </p>
                     </details>
                   ))}
