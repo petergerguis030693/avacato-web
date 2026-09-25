@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PageHeader } from "../components/PageHeader";
 import { ServiceCard } from "../components/ServiceCard";
 import { painPoints, services, site } from "../lib/site";
 
@@ -14,20 +15,14 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero */}
-      <section className="relative overflow-hidden bg-navy">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero-scales.jpg"
-            alt=""
-            fill
-            className="object-cover opacity-25"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/90 to-navy-deep" />
-        </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      {/* 1. Hero — Page Headers v1.3 */}
+      <link
+        rel="preload"
+        as="image"
+        href="/headers/header-home.webp"
+        type="image/webp"
+      />
+      <PageHeader image="home" priority>
           <p className="mb-4 text-sm font-semibold tracking-wide text-gold">
             محاماة واستشارات قانونية — باسوس
           </p>
@@ -56,8 +51,7 @@ export default function HomePage() {
               واتساب
             </a>
           </p>
-        </div>
-      </section>
+      </PageHeader>
 
       {/* 2. Services grid */}
       <section className="section-pad bg-navy-deep">

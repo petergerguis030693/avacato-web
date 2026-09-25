@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageHeader, type PageHeaderImageKey } from "./PageHeader";
 import { getService, type Service, site } from "../lib/site";
 
 export function ServiceDetail({ service }: { service: Service }) {
@@ -9,9 +10,8 @@ export function ServiceDetail({ service }: { service: Service }) {
 
   return (
     <article>
-      {/* Hero */}
-      <section className="border-b border-gold/20 bg-navy">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      {/* Hero — Page Headers v1.3 */}
+      <PageHeader image={service.slug as PageHeaderImageKey}>
           <p className="mb-3 text-sm text-gold">
             <Link href="/services/" className="hover:text-gold-bright">
               الخدمات
@@ -28,8 +28,7 @@ export function ServiceDetail({ service }: { service: Service }) {
               {site.litigationDisclaimer}
             </p>
           )}
-        </div>
-      </section>
+      </PageHeader>
 
       {/* المنفعة */}
       <section className="border-b border-gold/20 bg-navy-deep">
