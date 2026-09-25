@@ -8,7 +8,7 @@ import { services, site } from "../lib/site";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [svcOpen, setSvcOpen] = useState(false);
-  const svcRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -22,7 +22,7 @@ export function Header() {
   useEffect(() => {
     if (!svcOpen) return;
     const onDoc = (e: MouseEvent) => {
-      if (svcRef.current && !svcRef.current.contains(e.target as Node)) {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
         setSvcOpen(false);
       }
     };
@@ -39,7 +39,10 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 overflow-visible border-b border-gold/40 bg-[#0B1C2C]">
+      <header
+        ref={headerRef}
+        className="sticky top-0 z-50 border-b border-gold/40 bg-[#0B1C2C]"
+      >
         <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
           <Link
             href="/"
@@ -66,68 +69,36 @@ export function Header() {
             <Link
               href="/"
               className="rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
+              onClick={() => setSvcOpen(false)}
             >
               الرئيسية
             </Link>
 
-            <div
-              ref={svcRef}
-              className="relative"
-              onMouseEnter={() => setSvcOpen(true)}
-              onMouseLeave={() => setSvcOpen(false)}
+            <button
+              type="button"
+              className="inline-flex items-center gap-1 rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
+              aria-expanded={svcOpen}
+              aria-haspopup="true"
+              aria-controls="services-mega"
+              onClick={() => setSvcOpen((v) => !v)}
             >
-              <button
-                type="button"
-                className="inline-flex items-center gap-1 rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
-                aria-expanded={svcOpen}
-                aria-haspopup="menu"
-                onClick={() => setSvcOpen((v) => !v)}
-              >
-                الخدمات
-                <span aria-hidden className="text-[10px] opacity-70">
-                  ▾
-                </span>
-              </button>
-              {/* pt-2 bridge keeps hover when moving into the menu */}
-              {svcOpen && (
-                <div
-                  className="absolute end-0 top-full z-[70] min-w-[16rem] pt-2"
-                  role="menu"
-                >
-                  <div className="rounded-card border border-gold/30 bg-[#0B1C2C] py-2 shadow-xl">
-                    <Link
-                      href="/services/"
-                      role="menuitem"
-                      className="block px-4 py-2.5 text-sm font-medium text-gold hover:bg-navy-deep"
-                      onClick={() => setSvcOpen(false)}
-                    >
-                      كل الخدمات
-                    </Link>
-                    {services.map((s) => (
-                      <Link
-                        key={s.slug}
-                        href={s.href}
-                        role="menuitem"
-                        className="block px-4 py-2.5 text-sm text-cream/90 hover:bg-navy-deep hover:text-gold"
-                        onClick={() => setSvcOpen(false)}
-                      >
-                        {s.title}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+              الخدمات
+              <span aria-hidden className="text-[10px] opacity-70">
+                {svcOpen ? "▴" : "▾"}
+              </span>
+            </button>
 
             <Link
               href="/about/"
               className="rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
+              onClick={() => setSvcOpen(false)}
             >
               نبذة
             </Link>
             <Link
               href="/contact/"
               className="rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
+              onClick={() => setSvcOpen(false)}
             >
               تواصل
             </Link>
@@ -160,9 +131,38 @@ export function Header() {
             )}
           </button>
         </div>
+
+        {/* In-flow mega panel — always visible when open (no absolute clipping) */}
+        {svcOpen && (
+          <div
+            id="services-mega"
+            className="hidden border-t border-gold/30 bg-[#061018] md:block"
+            role="region"
+            aria-label="قائمة الخدمات"
+          >
+            <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-1 gap-y-1 px-4 py-3 sm:px-6">
+              <Link
+                href="/services/"
+                className="rounded-btn px-3 py-2 text-sm font-semibold text-gold hover:bg-navy-deep"
+                onClick={() => setSvcOpen(false)}
+              >
+                كل الخدمات
+              </Link>
+              {services.map((s) => (
+                <Link
+                  key={s.slug}
+                  href={s.href}
+                  className="rounded-btn px-3 py-2 text-sm text-cream/90 hover:bg-navy-deep hover:text-gold"
+                  onClick={() => setSvcOpen(false)}
+                >
+                  {s.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </header>
 
-      {/* Outside sticky/blur header so fixed covers full viewport */}
       {open && (
         <div
           className="fixed inset-0 z-[60] flex flex-col bg-[#0B1C2C] md:hidden"
