@@ -7,7 +7,7 @@ import { painPoints, services, site } from "../lib/site";
 export const metadata: Metadata = {
   title: { absolute: "مكتب الأفوكاتو | محاماة واستشارات قانونية — باسوس" },
   description:
-    "تأسيس شركات، تراخيص، قضايا جنائي ومدني وأسرة، شهر عقاري واستشارات قانونية. اتصل: 01123027887",
+    "تأسيس شركات، تراخيص، قضايا، شهر عقاري — بنخلّص أوراقك ونحفظ حقك. اتصل: 01123027887",
   alternates: { canonical: "/" },
 };
 
@@ -31,17 +31,17 @@ export default function HomePage() {
             محاماة واستشارات قانونية — باسوس
           </p>
           <h1 className="max-w-3xl text-3xl font-bold leading-tight text-cream sm:text-5xl">
-            كل ما يخص شركتك… في مكان واحد
+            أوراقك تتظبط… وحقك محفوظ
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted sm:text-lg">
-            نقدّم لك كل الخدمات القانونية بسرعة ودقة وبأعلى مستوى من الاحترافية.
+            من تأسيس الشركة لحد التراخيص والقضايا والشهر العقاري — بنمشّي الإجراءات معاك لحد ما تاخد النتيجة في إيدك.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={site.phoneHref} className="btn-gold" dir="ltr">
-              اتصل الآن
+              اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
             <Link href="/services/" className="btn-ghost">
-              خدماتنا
+              شوف خدماتنا
             </Link>
           </div>
         </div>
@@ -86,12 +86,13 @@ export default function HomePage() {
       <section className="section-pad bg-navy">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-4 sm:grid-cols-3">
-            {site.values.map((v) => (
+            {site.trustPills.map((v) => (
               <div
-                key={v}
+                key={v.title}
                 className="rounded-card border border-gold/40 bg-navy-deep px-6 py-8 text-center"
               >
-                <p className="text-2xl font-bold text-gold">{v}</p>
+                <p className="text-2xl font-bold text-gold">{v.title}</p>
+                <p className="mt-2 text-sm text-muted">{v.sub}</p>
               </div>
             ))}
           </div>
@@ -111,10 +112,13 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="text-2xl font-bold text-cream sm:text-3xl">
-            جاهز تبدأ؟ كلم مكتب الأفوكاتو
+            جاهز تبدأ؟ كلم مكتب الأفوكاتو دلوقتي
           </h2>
+          <p className="mt-3 text-muted">
+            دقيقة مكالمة أوضح من أسبوع دوران على النت.
+          </p>
           <a href={site.phoneHref} className="btn-gold mt-8 inline-flex" dir="ltr">
-            اتصل الآن · <span className="tel-ltr">{site.phoneDisplay}</span>
+            اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
           </a>
         </div>
       </section>

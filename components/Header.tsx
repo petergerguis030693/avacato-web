@@ -107,7 +107,7 @@ export function Header() {
               className="btn-gold ms-2 px-4 py-2 text-sm"
               dir="ltr"
             >
-              اتصل · {site.phoneDisplay}
+              اتصل الآن
             </a>
           </nav>
 

@@ -22,6 +22,7 @@ export default function ServiceDetailPage() {
       </p>
       <h1 className="text-3xl font-bold text-cream sm:text-4xl">{service.h1}</h1>
       <p className="mt-4 max-w-2xl text-lg text-muted">{service.lead}</p>
+      <p className="mt-4 max-w-2xl text-cream/90">{service.benefit}</p>
       <ul className="mt-8 max-w-2xl space-y-3">
         {service.bullets.map((b) => (
           <li key={b} className="flex gap-3 text-cream/90">
