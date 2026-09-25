@@ -90,6 +90,16 @@ body {
   border-color: rgba(201, 162, 39, 0.55);
 }
 
+/* UI Spec v1.5.1 — Home Hero only (`/`): shift the copy block to the visual
+   left half on desktop. RTL text-align stays start; the block moves via
+   margin-inline-start (away from RTL start / right). Mobile <lg unchanged. */
+@media (min-width: 1024px) {
+  .home-hero-copy {
+    max-width: min(36rem, 48%);
+    margin-inline-start: auto;
+  }
+}
+
 .section-pad {
   padding-block: 3.5rem;
 }
