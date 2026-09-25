@@ -23,6 +23,8 @@ export default function HomePage() {
         type="image/webp"
       />
       <PageHeader image="home" priority>
+        {/* UI Spec v1.5.1: desktop-only visual-left; RTL text-align unchanged */}
+        <div className="home-hero-copy">
           <p className="mb-4 text-sm font-semibold tracking-wide text-gold">
             محاماة واستشارات قانونية — باسوس
           </p>
@@ -51,6 +53,7 @@ export default function HomePage() {
               واتساب
             </a>
           </p>
+        </div>
       </PageHeader>
 
       {/* 2. Services — freer layout v1.4 */}
