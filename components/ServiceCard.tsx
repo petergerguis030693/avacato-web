@@ -20,7 +20,7 @@ export function ServiceCard({ service }: { service: Service }) {
         </svg>
       </div>
       <h3 className="text-lg font-bold text-cream group-hover:text-gold-bright">{service.title}</h3>
-      <p className="mt-2 text-sm text-muted">{service.teaser}</p>
+      <p className="mt-2 line-clamp-2 text-sm text-muted">{service.teaser}</p>
       <span className="mt-4 inline-block text-sm text-gold">المزيد ←</span>
     </Link>
   );

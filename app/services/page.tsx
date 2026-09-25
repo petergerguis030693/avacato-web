@@ -27,7 +27,7 @@ export default function ServicesPage() {
       <div className="card mt-8 p-6">
         <h2 className="text-xl font-bold text-gold">تصفية وبيع الشركات</h2>
         <p className="mt-2 text-sm text-muted">
-          تصفية · نقل ملكية · بيع شركات وإنهاء الإجراءات — تخرج من الشركة بأوراق سليمة
+          تصفية · نقل ملكية · بيع — تخرج بأوراق سليمة
         </p>
         <Link href="/services/companies/" className="mt-3 inline-block text-sm text-gold-bright hover:underline">
           تفاصيل تأسيس الشركات ←
