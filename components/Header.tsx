@@ -132,18 +132,18 @@ export function Header() {
           </button>
         </div>
 
-        {/* In-flow mega panel — always visible when open (no absolute clipping) */}
-        {svcOpen && (
+        {/* In-flow mega panel: no `hidden` (was invisible in some viewports) */}
+        {svcOpen ? (
           <div
             id="services-mega"
-            className="hidden border-t border-gold/30 bg-[#061018] md:block"
+            className="border-t border-gold/40 bg-[#061018]"
             role="region"
             aria-label="قائمة الخدمات"
           >
-            <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-1 gap-y-1 px-4 py-3 sm:px-6">
+            <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2 px-4 py-4 sm:grid-cols-3 sm:px-6 md:grid-cols-4">
               <Link
                 href="/services/"
-                className="rounded-btn px-3 py-2 text-sm font-semibold text-gold hover:bg-navy-deep"
+                className="col-span-2 rounded-lg border border-gold/50 bg-[#0B1C2C] px-3 py-3 text-sm font-semibold text-gold sm:col-span-3 md:col-span-1"
                 onClick={() => setSvcOpen(false)}
               >
                 كل الخدمات
@@ -152,7 +152,7 @@ export function Header() {
                 <Link
                   key={s.slug}
                   href={s.href}
-                  className="rounded-btn px-3 py-2 text-sm text-cream/90 hover:bg-navy-deep hover:text-gold"
+                  className="rounded-lg border border-gold/25 bg-[#0B1C2C] px-3 py-3 text-sm text-white hover:border-gold hover:text-gold"
                   onClick={() => setSvcOpen(false)}
                 >
                   {s.title}
@@ -160,7 +160,7 @@ export function Header() {
               ))}
             </div>
           </div>
-        )}
+        ) : null}
       </header>
 
       {open && (
