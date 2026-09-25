@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* 1. Hero */}
       <section className="relative overflow-hidden bg-navy">
         <div className="absolute inset-0">
           <Image
@@ -44,9 +45,21 @@ export default function HomePage() {
               شوف خدماتنا
             </Link>
           </div>
+          <p className="mt-4 text-sm text-muted">
+            أو{" "}
+            <a
+              href={site.whatsappHref}
+              className="text-gold-bright underline decoration-gold/40 hover:text-gold"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              واتساب
+            </a>
+          </p>
         </div>
       </section>
 
+      {/* 2. Services grid */}
       <section className="section-pad bg-navy-deep">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-cream sm:text-3xl">خدماتنا</h2>
@@ -61,6 +74,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 3. Pain */}
       <section className="section-pad bg-cream text-ink">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-2xl font-bold sm:text-3xl">عندك سؤال قانوني؟</h2>
@@ -83,22 +97,105 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-pad bg-navy">
+      {/* 4. الإعداد */}
+      <section className="section-pad bg-navy-deep" aria-labelledby="process-h2">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="mb-2 text-sm font-semibold tracking-wide text-gold">
+            {site.process.label}
+          </p>
+          <h2 id="process-h2" className="text-2xl font-bold text-cream sm:text-3xl">
+            {site.process.h2}
+          </h2>
+          <p className="mt-3 max-w-2xl text-muted">{site.process.intro}</p>
+          <ol className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-6">
+            {site.process.steps.map((step) => (
+              <li key={step.nr} className="flex gap-4 sm:flex-col sm:gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy font-bold text-gold">
+                  {step.nr}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-cream">{step.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                    {step.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-8 text-sm text-muted">
+            <a href={site.phoneHref} className="text-gold-bright hover:underline" dir="ltr">
+              اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
+            </a>
+            {" · "}
+            <a
+              href={site.whatsappHref}
+              className="text-gold-bright hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              أو واتساب
+            </a>
+          </p>
+        </div>
+      </section>
+
+      {/* 5. Trust Proof-Strip */}
+      <section className="section-pad bg-navy" aria-labelledby="trust-label">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p id="trust-label" className="mb-6 text-center text-sm font-semibold tracking-wide text-gold">
+            {site.trustLabel}
+          </p>
           <div className="grid gap-4 sm:grid-cols-3">
-            {site.trustPills.map((v) => (
+            {site.trustProof.map((card) => (
               <div
-                key={v.title}
-                className="rounded-card border border-gold/40 bg-navy-deep px-6 py-8 text-center"
+                key={card.title}
+                className="rounded-card border border-gold/20 bg-navy-deep px-6 py-8"
               >
-                <p className="text-2xl font-bold text-gold">{v.title}</p>
-                <p className="mt-2 text-sm text-muted">{v.sub}</p>
+                <p className="text-lg font-bold text-gold">{card.title}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{card.body}</p>
               </div>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-xs tracking-wide text-muted">
+            {site.trustMeta.join(" · ")}
+          </p>
+        </div>
+      </section>
+
+      {/* 6. FAQ */}
+      <section id="faq" className="section-pad bg-navy-deep scroll-mt-24" aria-labelledby="faq-h2">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <p className="mb-2 text-sm font-semibold tracking-wide text-gold">
+            {site.faq.label}
+          </p>
+          <h2 id="faq-h2" className="text-2xl font-bold text-cream sm:text-3xl">
+            {site.faq.h2}
+          </h2>
+          <div className="mt-8 space-y-3">
+            {site.faq.items.map((item) => (
+              <details
+                key={item.q}
+                className="group rounded-card border border-gold/25 bg-navy open:border-gold/50"
+              >
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-cream marker:content-none [&::-webkit-details-marker]:hidden">
+                  <span>{item.q}</span>
+                  <span
+                    className="shrink-0 text-gold transition group-open:rotate-180"
+                    aria-hidden
+                  >
+                    ▾
+                  </span>
+                </summary>
+                <p className="border-t border-gold/15 px-4 py-3 text-sm leading-relaxed text-muted">
+                  {item.a}
+                </p>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
+      {/* 7. CTA band Tel + WhatsApp */}
       <section className="relative overflow-hidden section-pad">
         <div className="absolute inset-0">
           <Image
@@ -117,9 +214,19 @@ export default function HomePage() {
           <p className="mt-3 text-muted">
             دقيقة مكالمة أوضح من أسبوع دوران على النت.
           </p>
-          <a href={site.phoneHref} className="btn-gold mt-8 inline-flex" dir="ltr">
-            اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
-          </a>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href={site.phoneHref} className="btn-gold inline-flex" dir="ltr">
+              اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
+            </a>
+            <a
+              href={site.whatsappHref}
+              className="btn-ghost inline-flex"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              واتساب
+            </a>
+          </div>
         </div>
       </section>
     </>

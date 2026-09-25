@@ -5,6 +5,7 @@ export function ServiceDetail({ service }: { service: Service }) {
   const related = service.related
     .map((slug) => getService(slug))
     .filter((s): s is Service => Boolean(s));
+  const isLitigation = service.slug === "litigation";
 
   return (
     <article>
@@ -22,6 +23,11 @@ export function ServiceDetail({ service }: { service: Service }) {
             {service.h1}
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted">{service.lead}</p>
+          {isLitigation && (
+            <p className="mt-4 max-w-2xl text-sm text-muted">
+              {site.litigationDisclaimer}
+            </p>
+          )}
         </div>
       </section>
 
@@ -36,7 +42,10 @@ export function ServiceDetail({ service }: { service: Service }) {
       </section>
 
       {/* إيه بنخلّص */}
-      <section className="border-b border-gold/20 bg-navy">
+      <section
+        className="border-b border-gold/20 bg-navy"
+        id={service.slug === "companies" ? "liquidation" : undefined}
+      >
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
           <h2 className="text-2xl font-bold text-gold sm:text-3xl">
             إيه بنخلّص
@@ -99,12 +108,27 @@ export function ServiceDetail({ service }: { service: Service }) {
         </div>
       </section>
 
-      {/* CTA Tel */}
+      {/* CTA Tel + WhatsApp */}
       <section className="border-b border-gold/20 bg-navy">
         <div className="mx-auto max-w-6xl px-4 py-12 text-center sm:px-6 sm:py-14">
-          <a href={site.phoneHref} className="btn-gold inline-flex" dir="ltr">
-            اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
-          </a>
+          {isLitigation && (
+            <p className="mx-auto mb-6 max-w-xl text-sm text-muted">
+              {site.litigationDisclaimer}
+            </p>
+          )}
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href={site.phoneHref} className="btn-gold inline-flex" dir="ltr">
+              اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
+            </a>
+            <a
+              href={site.whatsappHref}
+              className="btn-ghost inline-flex"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {site.labels.talkWhatsapp}
+            </a>
+          </div>
         </div>
       </section>
 
