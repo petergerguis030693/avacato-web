@@ -24,7 +24,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="text-cream/80 hover:text-gold-bright">الرئيسية</Link></li>
             <li><Link href="/services/" className="text-cream/80 hover:text-gold-bright">الخدمات</Link></li>
-            <li><Link href="/#faq" className="text-cream/80 hover:text-gold-bright">أسئلة شائعة</Link></li>
+            <li><Link href="/#faq" className="text-cream/80 hover:text-gold-bright">أسئلة متكررة</Link></li>
             <li><Link href="/about/" className="text-cream/80 hover:text-gold-bright">نبذة</Link></li>
             <li><Link href="/contact/" className="text-cream/80 hover:text-gold-bright">تواصل</Link></li>
             <li><Link href="/legal/" className="text-cream/80 hover:text-gold-bright">بيانات قانونية</Link></li>

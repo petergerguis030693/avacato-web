@@ -14,10 +14,10 @@ export default function ServicesPage() {
     <>
       <PageHeader image="services">
         <h1 className="text-3xl font-bold text-cream sm:text-4xl">
-          خدمات تخلّص شغلك… مش بس كلام
+          خدمات بنتيجة واضحة… لا وعود عامة
         </h1>
         <p className="mt-4 max-w-2xl text-muted">
-          كل خدمة تحت ليها نتيجة واضحة: أوراق جاهزة، رخصة شغّالة، أو مسار قانوني تعرفه من أول اجتماع.
+          لكل خدمة نتيجة محددة: أوراق جاهزة، رخصة سارية، أو مسار قانوني تعرفونه من أول اجتماع.
         </p>
       </PageHeader>
 

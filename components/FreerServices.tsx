@@ -35,7 +35,7 @@ function DualCta({ className = "" }: { className?: string }) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        واتساب
+        {site.labels.talkWhatsapp}
       </a>
     </div>
   );
@@ -70,7 +70,7 @@ export function HomeServicesFreer() {
           خدماتنا
         </h2>
         <p className="mt-3 max-w-xl text-muted sm:mt-4">
-          من تأسيس الشركة لحد التراخيص والقضايا — كل اللي يخص شغلك القانوني.
+          من تأسيس الشركة إلى التراخيص والقضايا — كل ما يخص أعمالكم القانونية.
         </p>
 
         <div className="mt-10 flex flex-col gap-6 sm:mt-12 sm:gap-8">
@@ -81,7 +81,7 @@ export function HomeServicesFreer() {
 
         <div className="mt-12 sm:mt-16">
           <p className="mb-2 text-sm font-semibold tracking-wide text-gold">
-            خدمات تانية
+            خدمات أخرى
           </p>
           <ul className="max-w-3xl">
             {rest.map((s) => (

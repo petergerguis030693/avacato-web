@@ -70,7 +70,7 @@ export function ContactForm() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            واتساب
+            {site.labels.talkWhatsapp}
           </a>
         </div>
       </div>
