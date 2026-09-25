@@ -6,22 +6,22 @@
    Canonical names below; *-rgb channels keep Tailwind opacity modifiers
    working (bg-navy/60, border-gold/30). Aliases preserve existing classes. */
 :root {
-  --color-primary: #14243a;
+  --color-primary: #14243A;
   --color-primary-rgb: 20 36 58;
 
-  --color-secondary: #b89755;
+  --color-secondary: #B89755;
   --color-secondary-rgb: 184 151 85;
 
-  --color-bg: #faf9f6;
+  --color-bg: #FAF9F6;
   --color-bg-rgb: 250 249 246;
 
-  --color-bg-alt: #f2f4f6;
+  --color-bg-alt: #F2F4F6;
   --color-bg-alt-rgb: 242 244 246;
 
-  --color-text: #252b33;
+  --color-text: #252B33;
   --color-text-rgb: 37 43 51;
 
-  --color-footer: #0b1726;
+  --color-footer: #0B1726;
   --color-footer-rgb: 11 23 38;
 
   --color-on-dark: #ffffff;
@@ -80,7 +80,7 @@ body {
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-secondary);
   outline-offset: 2px;
 }
 
