@@ -2,128 +2,251 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { services, site } from "../lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [svcOpen, setSvcOpen] = useState(false);
+  const svcRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!svcOpen) return;
+    const onDoc = (e: MouseEvent) => {
+      if (svcRef.current && !svcRef.current.contains(e.target as Node)) {
+        setSvcOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSvcOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [svcOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gold/40 bg-navy/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
-          <Image
-            src="/brand/logo-primary-gold-black.png"
-            alt="مكتب الأفوكاتو"
-            width={180}
-            height={48}
-            className="h-11 w-auto sm:h-12"
-            priority
-          />
-        </Link>
-
-        <nav className="hidden items-center gap-7 md:flex" aria-label="القائمة الرئيسية">
-          <Link href="/" className="text-sm text-cream/90 transition hover:text-gold-bright">
-            الرئيسية
-          </Link>
-          <div
-            className="relative"
-            onMouseEnter={() => setSvcOpen(true)}
-            onMouseLeave={() => setSvcOpen(false)}
+    <>
+      <header className="sticky top-0 z-50 overflow-visible border-b border-gold/40 bg-[#0B1C2C]">
+        <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+          <Link
+            href="/"
+            className="flex shrink-0 items-center"
+            onClick={() => {
+              setOpen(false);
+              setSvcOpen(false);
+            }}
           >
-            <button
-              type="button"
-              className="inline-flex items-center gap-1 text-sm text-cream/90 transition hover:text-gold-bright"
-              aria-expanded={svcOpen}
-              aria-haspopup="true"
-              onClick={() => setSvcOpen((v) => !v)}
+            <Image
+              src="/brand/logo-primary-gold-black.png"
+              alt="مكتب الأفوكاتو"
+              width={168}
+              height={48}
+              className="h-10 w-auto"
+              priority
+            />
+          </Link>
+
+          <nav
+            className="hidden items-center gap-1 md:flex md:gap-2"
+            aria-label="التنقل الرئيسي"
+          >
+            <Link
+              href="/"
+              className="rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
             >
-              الخدمات
-              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden className="opacity-70">
-                <path fill="currentColor" d="M6 8.5 1.5 4h9z" />
-              </svg>
-            </button>
-            {svcOpen && (
-              <div className="absolute end-0 top-full z-50 min-w-[240px] rounded-card border border-gold/30 bg-navy py-2 shadow-xl">
-                <Link
-                  href="/services/"
-                  className="block px-4 py-2 text-sm text-gold hover:bg-navy-deep"
-                  onClick={() => setSvcOpen(false)}
-                >
-                  كل الخدمات
-                </Link>
-                {services.map((s) => (
-                  <Link
-                    key={s.slug}
-                    href={s.href}
-                    className="block px-4 py-2 text-sm text-cream/90 hover:bg-navy-deep hover:text-gold-bright"
-                    onClick={() => setSvcOpen(false)}
-                  >
-                    {s.title}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <Link href="/about/" className="text-sm text-cream/90 transition hover:text-gold-bright">
-            نبذة
-          </Link>
-          <Link href="/contact/" className="text-sm text-cream/90 transition hover:text-gold-bright">
-            تواصل
-          </Link>
-          <a href={site.phoneHref} className="btn-gold text-sm px-4" dir="ltr">
-            اتصل الآن
-          </a>
-        </nav>
-
-        <button
-          type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-btn border border-gold/40 text-white md:hidden"
-          aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <div className="flex flex-col gap-1.5">
-            <span className={`block h-0.5 w-5 bg-gold transition ${open ? "translate-y-2 rotate-45" : ""}`} />
-            <span className={`block h-0.5 w-5 bg-gold transition ${open ? "opacity-0" : ""}`} />
-            <span className={`block h-0.5 w-5 bg-gold transition ${open ? "-translate-y-2 -rotate-45" : ""}`} />
-          </div>
-        </button>
-      </div>
-
-      {open && (
-        <div className="fixed inset-0 top-[4.25rem] z-40 overflow-y-auto bg-navy md:hidden">
-          <nav className="flex flex-col gap-1 p-6" aria-label="قائمة الجوال">
-            <Link href="/" className="rounded-card px-4 py-3 text-lg text-white hover:bg-navy-deep" onClick={() => setOpen(false)}>
               الرئيسية
             </Link>
-            <p className="px-4 pt-3 text-xs text-gold">الخدمات</p>
-            <Link href="/services/" className="rounded-card px-4 py-2 text-base text-cream/90 hover:bg-navy-deep" onClick={() => setOpen(false)}>
+
+            <div
+              ref={svcRef}
+              className="relative"
+              onMouseEnter={() => setSvcOpen(true)}
+              onMouseLeave={() => setSvcOpen(false)}
+            >
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
+                aria-expanded={svcOpen}
+                aria-haspopup="menu"
+                onClick={() => setSvcOpen((v) => !v)}
+              >
+                الخدمات
+                <span aria-hidden className="text-[10px] opacity-70">
+                  ▾
+                </span>
+              </button>
+              {/* pt-2 bridge keeps hover when moving into the menu */}
+              {svcOpen && (
+                <div
+                  className="absolute end-0 top-full z-[70] min-w-[16rem] pt-2"
+                  role="menu"
+                >
+                  <div className="rounded-card border border-gold/30 bg-[#0B1C2C] py-2 shadow-xl">
+                    <Link
+                      href="/services/"
+                      role="menuitem"
+                      className="block px-4 py-2.5 text-sm font-medium text-gold hover:bg-navy-deep"
+                      onClick={() => setSvcOpen(false)}
+                    >
+                      كل الخدمات
+                    </Link>
+                    {services.map((s) => (
+                      <Link
+                        key={s.slug}
+                        href={s.href}
+                        role="menuitem"
+                        className="block px-4 py-2.5 text-sm text-cream/90 hover:bg-navy-deep hover:text-gold"
+                        onClick={() => setSvcOpen(false)}
+                      >
+                        {s.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="/about/"
+              className="rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
+            >
+              نبذة
+            </Link>
+            <Link
+              href="/contact/"
+              className="rounded-btn px-3 py-2 text-sm text-cream/90 transition hover:bg-navy-deep hover:text-gold"
+            >
+              تواصل
+            </Link>
+            <a
+              href={site.phoneHref}
+              className="btn-gold ms-2 px-4 py-2 text-sm"
+              dir="ltr"
+            >
+              اتصل · {site.phoneDisplay}
+            </a>
+          </nav>
+
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-btn border border-gold/50 text-gold md:hidden"
+            aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? (
+              <span className="text-2xl leading-none" aria-hidden>
+                ×
+              </span>
+            ) : (
+              <span className="flex flex-col gap-1.5" aria-hidden>
+                <span className="block h-0.5 w-5 bg-gold" />
+                <span className="block h-0.5 w-5 bg-gold" />
+                <span className="block h-0.5 w-5 bg-gold" />
+              </span>
+            )}
+          </button>
+        </div>
+      </header>
+
+      {/* Outside sticky/blur header so fixed covers full viewport */}
+      {open && (
+        <div
+          className="fixed inset-0 z-[60] flex flex-col bg-[#0B1C2C] md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="القائمة"
+        >
+          <div className="flex h-[4.25rem] shrink-0 items-center justify-between border-b border-gold/40 bg-[#0B1C2C] px-4">
+            <Link href="/" onClick={() => setOpen(false)}>
+              <Image
+                src="/brand/logo-primary-gold-black.png"
+                alt="مكتب الأفوكاتو"
+                width={168}
+                height={48}
+                className="h-10 w-auto"
+              />
+            </Link>
+            <button
+              type="button"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-btn border border-gold/50 text-gold"
+              aria-label="إغلاق القائمة"
+              onClick={() => setOpen(false)}
+            >
+              <span className="text-2xl leading-none" aria-hidden>
+                ×
+              </span>
+            </button>
+          </div>
+          <nav
+            className="flex flex-1 flex-col gap-1 overflow-y-auto bg-[#0B1C2C] p-4 pb-8"
+            aria-label="قائمة الجوال"
+          >
+            <Link
+              href="/"
+              className="rounded-card px-4 py-3 text-lg text-cream hover:bg-navy-deep"
+              onClick={() => setOpen(false)}
+            >
+              الرئيسية
+            </Link>
+            <p className="px-4 pb-1 pt-3 text-xs font-semibold text-gold">
+              الخدمات
+            </p>
+            <Link
+              href="/services/"
+              className="rounded-card px-4 py-2.5 text-base text-gold hover:bg-navy-deep"
+              onClick={() => setOpen(false)}
+            >
               كل الخدمات
             </Link>
             {services.map((s) => (
               <Link
                 key={s.slug}
                 href={s.href}
-                className="rounded-card px-4 py-2 text-base text-cream/80 hover:bg-navy-deep"
+                className="rounded-card px-4 py-2.5 text-base text-cream/90 hover:bg-navy-deep"
                 onClick={() => setOpen(false)}
               >
                 {s.title}
               </Link>
             ))}
-            <Link href="/about/" className="rounded-card px-4 py-3 text-lg text-white hover:bg-navy-deep" onClick={() => setOpen(false)}>
+            <Link
+              href="/about/"
+              className="rounded-card px-4 py-3 text-lg text-cream hover:bg-navy-deep"
+              onClick={() => setOpen(false)}
+            >
               نبذة
             </Link>
-            <Link href="/contact/" className="rounded-card px-4 py-3 text-lg text-white hover:bg-navy-deep" onClick={() => setOpen(false)}>
+            <Link
+              href="/contact/"
+              className="rounded-card px-4 py-3 text-lg text-cream hover:bg-navy-deep"
+              onClick={() => setOpen(false)}
+            >
               تواصل
             </Link>
-            <a href={site.phoneHref} className="btn-gold mt-4 text-center" dir="ltr" onClick={() => setOpen(false)}>
-              اتصل الآن · <span className="tel-ltr">{site.phoneDisplay}</span>
+            <a
+              href={site.phoneHref}
+              className="btn-gold mt-4 text-center"
+              dir="ltr"
+              onClick={() => setOpen(false)}
+            >
+              اتصل الآن · {site.phoneDisplay}
             </a>
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

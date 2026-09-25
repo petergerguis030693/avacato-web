@@ -46,9 +46,9 @@ export default function RootLayout({
       <body className="font-cairo antialiased">
         <JsonLd />
         <Header />
-        <main className="min-h-[70vh]">{children}</main>
+        <main className="min-h-[70vh] pb-24 md:pb-0">{children}</main>
         <Footer />
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-navy/95 p-3 md:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-[#0B1C2C] p-3 md:hidden">
           <a
             href={site.phoneHref}
             className="btn-gold w-full text-center text-sm"
@@ -57,7 +57,7 @@ export default function RootLayout({
             اتصل الآن · <span className="tel-ltr">{site.phoneDisplay}</span>
           </a>
         </div>
-        <div className="h-16 md:hidden" aria-hidden />
+        <div className="h-20 md:hidden" aria-hidden />
       </body>
     </html>
   );
