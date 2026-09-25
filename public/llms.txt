@@ -1,0 +1,19 @@
+# مكتب الأفوكاتو (Avacato Law Office)
+
+Arabic RTL website for an Egyptian law firm in Basous (باسوس).
+
+## Summary (EN)
+Avacato Law Office (Egypt) — companies, licenses, import/export, government procedures, litigation, real estate legalization. Contact 01123027887. Site Arabic RTL.
+
+## Summary (AR)
+مكتب الأفوكاتو للمحاماة والاستشارات القانونية — تأسيس شركات، تراخيص، استيراد وتصدير، إجراءات حكومية، قضايا، شهر عقاري وتقنين أراضي. هاتف: 01123027887. العنوان: باسوس — طريق القناطر الخيرية · فوق مطعم البرنس · أمام مخزن الأنابيب.
+
+## Key URLs
+- https://avacato.smarttech-connection.com/
+- https://avacato.smarttech-connection.com/services/
+- https://avacato.smarttech-connection.com/about/
+- https://avacato.smarttech-connection.com/contact/
+- https://avacato.smarttech-connection.com/legal/
+
+## Contact
+Tel: +201123027887 / 01123027887

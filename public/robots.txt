@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://avacato.smarttech-connection.com/sitemap.xml

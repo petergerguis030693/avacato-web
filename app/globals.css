@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-navy: #0b1c2c;
+  --color-navy-deep: #061018;
+  --color-gold: #c9a227;
+  --color-gold-bright: #e4c65a;
+  --color-cream: #f4efe6;
+  --color-ink: #1a1a1a;
+  --color-white: #ffffff;
+  --color-muted: #8a93a0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-navy-deep);
+  color: var(--color-white);
+  font-family: var(--font-cairo), Tahoma, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.tel-ltr {
+  unicode-bidi: isolate;
+  direction: ltr;
+  display: inline-block;
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btn-gold:hover {
+  background: var(--color-gold-bright);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid rgba(201, 162, 39, 0.7);
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--color-gold-bright);
+  color: var(--color-gold-bright);
+  background: rgba(201, 162, 39, 0.08);
+}
+
+.card {
+  background: rgba(11, 28, 44, 0.9);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  border-radius: 8px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.card:hover {
+  border-color: rgba(201, 162, 39, 0.55);
+}
+
+.section-pad {
+  padding-block: 3.5rem;
+}
+@media (min-width: 640px) {
+  .section-pad {
+    padding-block: 5rem;
+  }
+}
