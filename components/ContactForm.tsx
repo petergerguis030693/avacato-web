@@ -58,15 +58,15 @@ export function ContactForm() {
         <h2 className="text-2xl font-bold text-gold">
           {site.contact.successHeadline}
         </h2>
-        <p className="mt-3 text-cream/90">{site.contact.successBody}</p>
-        <p className="mt-4 text-sm text-muted">{site.contact.successCta}</p>
+        <p className="mt-3 text-white/90">{site.contact.successBody}</p>
+        <p className="mt-4 text-sm text-on-dark-muted">{site.contact.successCta}</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <a href={site.phoneHref} className="btn-gold" dir="ltr">
             اتصل — <span className="tel-ltr">{site.phoneDisplay}</span>
           </a>
           <a
             href={site.whatsappHref}
-            className="btn-ghost"
+            className="btn-whatsapp"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -82,7 +82,7 @@ export function ContactForm() {
       {submitError && (
         <div
           role="alert"
-          className="mb-6 rounded-card border border-gold/20 bg-navy px-4 py-3 text-sm text-muted"
+          className="mb-6 rounded-card border border-navy/10 bg-surface-alt px-4 py-3 text-sm text-muted"
         >
           {site.contact.errorCopy}
         </div>
@@ -90,7 +90,7 @@ export function ContactForm() {
 
       <form onSubmit={onSubmit} className="space-y-5" noValidate>
         <div>
-          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-gold">
+          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-navy">
             الاسم*
           </label>
           <input
@@ -99,15 +99,15 @@ export function ContactForm() {
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-card border border-gold/30 bg-navy-deep px-3 py-3 text-white"
+            className="w-full rounded-card border border-navy/15 bg-white px-3 py-3 text-ink"
             autoComplete="name"
             required
           />
-          {errors.name && <p className="mt-1 text-sm text-gold-bright">{errors.name}</p>}
+          {errors.name && <p className="mt-1 text-sm text-gold-ink">{errors.name}</p>}
         </div>
 
         <div>
-          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-gold">
+          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-navy">
             الهاتف*
           </label>
           <input
@@ -117,16 +117,16 @@ export function ContactForm() {
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="w-full rounded-card border border-gold/30 bg-navy-deep px-3 py-3 text-white"
+            className="w-full rounded-card border border-navy/15 bg-white px-3 py-3 text-ink"
             autoComplete="tel"
             dir="ltr"
             required
           />
-          {errors.phone && <p className="mt-1 text-sm text-gold-bright">{errors.phone}</p>}
+          {errors.phone && <p className="mt-1 text-sm text-gold-ink">{errors.phone}</p>}
         </div>
 
         <div>
-          <label htmlFor="service" className="mb-2 block text-sm font-semibold text-gold">
+          <label htmlFor="service" className="mb-2 block text-sm font-semibold text-navy">
             الخدمة
           </label>
           <select
@@ -134,7 +134,7 @@ export function ContactForm() {
             name="service"
             value={service}
             onChange={(e) => setService(e.target.value)}
-            className="w-full rounded-card border border-gold/30 bg-navy-deep px-3 py-3 text-white"
+            className="w-full rounded-card border border-navy/15 bg-white px-3 py-3 text-ink"
           >
             <option value="" disabled>
               {site.contact.servicePlaceholder}
@@ -148,7 +148,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-gold">
+          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-navy">
             الرسالة*
           </label>
           <textarea
@@ -158,10 +158,10 @@ export function ContactForm() {
             rows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full rounded-card border border-gold/30 bg-navy-deep px-3 py-3 text-white"
+            className="w-full rounded-card border border-navy/15 bg-white px-3 py-3 text-ink"
             required
           />
-          {errors.message && <p className="mt-1 text-sm text-gold-bright">{errors.message}</p>}
+          {errors.message && <p className="mt-1 text-sm text-gold-ink">{errors.message}</p>}
         </div>
 
         <button type="submit" className="btn-gold">

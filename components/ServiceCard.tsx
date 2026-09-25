@@ -14,14 +14,14 @@ export function ServiceCard({ service }: { service: Service }) {
   const d = icons[service.slug] || icons.companies;
   return (
     <Link href={service.href} className="card group block p-6">
-      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-card border border-gold/40 text-gold">
+      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-card border border-gold/40 text-gold-ink">
         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden>
           <path strokeLinecap="round" strokeLinejoin="round" d={d} />
         </svg>
       </div>
-      <h3 className="text-lg font-bold text-cream group-hover:text-gold-bright">{service.title}</h3>
+      <h3 className="text-lg font-bold text-navy group-hover:text-gold-ink">{service.title}</h3>
       <p className="mt-2 line-clamp-2 text-sm text-muted">{service.teaser}</p>
-      <span className="mt-4 inline-block text-sm text-gold">المزيد ←</span>
+      <span className="mt-4 inline-block text-sm text-gold-ink">المزيد ←</span>
     </Link>
   );
 }

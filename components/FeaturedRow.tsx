@@ -21,10 +21,10 @@ export function FeaturedRow({ service }: { service: Service }) {
   return (
     <Link
       href={service.href}
-      className="group flex gap-4 border-s-[3px] border-gold/70 bg-cream/5 py-5 pe-2 ps-5 transition-colors hover:bg-cream/10 sm:gap-5 sm:py-6 sm:ps-6"
+      className="group flex gap-4 border-s-[3px] border-gold/70 bg-white py-5 pe-2 ps-5 transition-colors hover:bg-surface-alt sm:gap-5 sm:py-6 sm:ps-6"
     >
       <span
-        className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center text-gold sm:h-11 sm:w-11"
+        className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center text-gold-ink sm:h-11 sm:w-11"
         aria-hidden
       >
         <svg
@@ -38,13 +38,13 @@ export function FeaturedRow({ service }: { service: Service }) {
         </svg>
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block text-lg font-bold text-cream group-hover:underline group-hover:decoration-gold/70 group-hover:underline-offset-4 sm:text-xl">
+        <span className="block text-lg font-bold text-ink group-hover:underline group-hover:decoration-gold/70 group-hover:underline-offset-4 sm:text-xl">
           {service.title}
         </span>
         <span className="mt-1 block text-sm leading-relaxed text-muted">
           {service.teaser}
         </span>
-        <span className="mt-2 inline-block text-sm font-semibold text-gold">
+        <span className="mt-2 inline-block text-sm font-semibold text-gold-ink">
           المزيد ←
         </span>
       </span>

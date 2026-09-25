@@ -22,7 +22,7 @@ function DualCta({
       </a>
       <a
         href={site.whatsappHref}
-        className={`btn-ghost ${width}`}
+        className={`btn-whatsapp ${width}`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -47,13 +47,13 @@ export function ServiceDetail({ service }: { service: Service }) {
             <Link href="/services/" className="hover:text-gold-bright">
               الخدمات
             </Link>
-            <span className="mx-2 text-muted">/</span>
+            <span className="mx-2 text-on-dark-muted">/</span>
             <span>{service.title}</span>
           </p>
-          <h1 className="text-3xl font-bold text-cream sm:text-4xl">
+          <h1 className="text-3xl font-bold text-white sm:text-4xl">
             {service.h1}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-on-dark-muted sm:text-lg">
             {service.lead}
           </p>
           {isLitigation && (
@@ -65,12 +65,12 @@ export function ServiceDetail({ service }: { service: Service }) {
         </PageHeader>
 
         {/* Desktop 2-col · Mobile: CTA aside then zones */}
-        <div className="border-b border-gold/20 bg-navy">
+        <div className="border-b border-navy/10 bg-cream">
           <div className="detail-wrap grid py-10 lg:grid-cols-[minmax(0,1.62fr)_minmax(0,1fr)] lg:items-start lg:gap-12 lg:py-16 xl:gap-14">
-            <div className="order-2 divide-y divide-gold/10 lg:order-1">
+            <div className="order-2 divide-y divide-navy/10 lg:order-1">
               {/* المنفعة */}
               <section className="detail-zone" data-reveal>
-                <h2 className="text-2xl font-bold text-gold sm:text-3xl">
+                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
                   {site.detail.benefit}
                 </h2>
                 <ul className="mt-8 grid gap-6">
@@ -80,14 +80,14 @@ export function ServiceDetail({ service }: { service: Service }) {
                       data-reveal
                       data-reveal-delay={i * 50}
                     >
-                      <h3 className="text-lg font-bold text-cream">
+                      <h3 className="text-lg font-bold text-ink">
                         {item.title}
                       </h3>
                       <span
                         className="mt-2 block h-px w-12 bg-gold"
                         aria-hidden
                       />
-                      <p className="mt-3 text-base leading-relaxed text-cream/90">
+                      <p className="mt-3 text-base leading-relaxed text-ink">
                         {item.body}
                       </p>
                     </li>
@@ -101,14 +101,14 @@ export function ServiceDetail({ service }: { service: Service }) {
                 data-reveal
                 id={service.slug === "companies" ? "liquidation" : undefined}
               >
-                <h2 className="text-2xl font-bold text-gold sm:text-3xl">
+                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
                   {site.detail.deliverables}
                 </h2>
                 <ul className="mt-8 grid gap-3 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-3">
                   {service.bullets.map((b, i) => (
                     <li
                       key={b}
-                      className="flex gap-3 text-cream/90"
+                      className="flex gap-3 text-ink"
                       data-reveal
                       data-reveal-delay={i * 45}
                     >
@@ -124,7 +124,7 @@ export function ServiceDetail({ service }: { service: Service }) {
 
               {/* خطوات العمل — exactly 3 steps */}
               <section className="detail-zone" data-reveal>
-                <h2 className="text-2xl font-bold text-gold sm:text-3xl">
+                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
                   {site.detail.steps}
                 </h2>
                 <ol className="relative mt-10 grid gap-8 sm:grid-cols-3 sm:gap-6">
@@ -145,7 +145,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                           {nr}
                         </span>
                         <div>
-                          <h3 className="text-lg font-bold text-cream">
+                          <h3 className="text-lg font-bold text-ink">
                             {step.title}
                           </h3>
                           <p className="mt-1.5 text-sm leading-relaxed text-muted">
@@ -160,45 +160,45 @@ export function ServiceDetail({ service }: { service: Service }) {
 
               {/* لمن هذه الخدمة */}
               <section className="detail-zone" data-reveal>
-                <h2 className="text-2xl font-bold text-gold sm:text-3xl">
+                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
                   {site.detail.audience}
                 </h2>
                 <ul className="mt-6 flex flex-wrap gap-2">
                   {service.chips.map((chip) => (
                     <li
                       key={chip}
-                      className="rounded-btn border border-gold/40 bg-cream/5 px-3 py-1.5 text-sm text-cream"
+                      className="rounded-btn border border-navy/15 bg-white px-3 py-1.5 text-sm text-ink"
                     >
                       {chip}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 text-base leading-relaxed text-cream/90">
+                <p className="mt-5 text-base leading-relaxed text-ink">
                   {service.audience}
                 </p>
               </section>
 
               {/* أسئلة متكررة */}
               <section className="detail-zone" data-reveal>
-                <h2 className="text-2xl font-bold text-gold sm:text-3xl">
+                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
                   {site.detail.faq}
                 </h2>
                 <div className="mt-6 space-y-3">
                   {service.faq.map((item) => (
                     <details
                       key={item.q}
-                      className="group rounded-card border border-gold/25 bg-navy-deep open:border-gold/50"
+                      className="group rounded-card border border-navy/10 bg-white open:border-gold/40"
                     >
-                      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-cream marker:content-none [&::-webkit-details-marker]:hidden">
+                      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-ink marker:content-none [&::-webkit-details-marker]:hidden">
                         <span>{item.q}</span>
                         <span
-                          className="shrink-0 text-gold transition group-open:rotate-180"
+                          className="shrink-0 text-gold-ink transition group-open:rotate-180"
                           aria-hidden
                         >
                           ▾
                         </span>
                       </summary>
-                      <p className="border-t border-gold/15 px-4 py-3 text-sm leading-relaxed text-muted">
+                      <p className="border-t border-navy/10 px-4 py-3 text-sm leading-relaxed text-muted">
                         {item.a}
                       </p>
                     </details>
@@ -213,7 +213,7 @@ export function ServiceDetail({ service }: { service: Service }) {
               data-reveal
               data-reveal-delay={80}
             >
-              <div className="rounded-card border border-gold/40 bg-navy-deep p-6 sm:p-7">
+              <div className="rounded-card border border-gold/40 bg-navy p-6 sm:p-7">
                 <p className="text-sm font-semibold tracking-wide text-gold">
                   {site.detail.asideStart}
                 </p>
@@ -228,7 +228,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </h3>
                 <ul className="mt-3 space-y-2">
                   {service.asideWhy.map((why) => (
-                    <li key={why} className="flex gap-2 text-sm text-cream/90">
+                    <li key={why} className="flex gap-2 text-sm text-white/90">
                       <span
                         className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
                         aria-hidden
@@ -246,7 +246,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                       <li key={s.slug}>
                         <Link
                           href={s.href}
-                          className="text-sm font-semibold text-cream transition-opacity hover:text-gold-bright hover:underline hover:decoration-gold/70 hover:underline-offset-4"
+                          className="text-sm font-semibold text-white transition-opacity hover:text-gold-bright hover:underline hover:decoration-gold/70 hover:underline-offset-4"
                         >
                           {s.title}
                         </Link>
@@ -260,9 +260,9 @@ export function ServiceDetail({ service }: { service: Service }) {
         </div>
 
         {/* خدمات مرتبطة — Featured-row style v1.4 */}
-        <section className="border-b border-gold/20 bg-navy-deep" data-reveal>
+        <section className="border-b border-navy/10 bg-surface-alt" data-reveal>
           <div className="detail-wrap py-10 lg:py-16">
-            <h2 className="text-2xl font-bold text-gold sm:text-3xl">
+            <h2 className="text-2xl font-bold text-navy sm:text-3xl">
               {site.detail.related}
             </h2>
             <div className="mt-8 flex flex-col gap-5 sm:gap-6">
@@ -292,10 +292,10 @@ export function ServiceDetail({ service }: { service: Service }) {
             <div className="absolute inset-0 bg-navy/90" />
           </div>
           <div className="relative mx-auto max-w-3xl px-4 py-12 text-center sm:px-6 lg:py-16">
-            <h2 className="text-2xl font-bold text-cream sm:text-3xl">
+            <h2 className="text-2xl font-bold text-white sm:text-3xl">
               {site.detail.finalH2}
             </h2>
-            <p className="mt-3 text-muted">{site.detail.finalBody}</p>
+            <p className="mt-3 text-on-dark-muted">{site.detail.finalBody}</p>
             {isLitigation && (
               <p className="mt-3 text-sm text-gold-bright/90">
                 {site.litigationDisclaimer}

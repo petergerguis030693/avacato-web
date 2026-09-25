@@ -28,10 +28,10 @@ export default function HomePage() {
           <p className="mb-4 text-sm font-semibold tracking-wide text-gold">
             محاماة واستشارات قانونية — باسوس
           </p>
-          <h1 className="max-w-3xl text-3xl font-bold leading-tight text-cream sm:text-5xl">
+          <h1 className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-5xl">
             أوراقكم تُرتَّب… وحقوقكم محفوظة
           </h1>
-          <p className="mt-5 max-w-2xl text-base text-muted sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base text-on-dark-muted sm:text-lg">
             من تأسيس الشركة إلى التراخيص والقضايا والشهر العقاري — نتولى الإجراءات معكم حتى تستلمون النتيجة جاهزة.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -42,11 +42,11 @@ export default function HomePage() {
               اطّلعوا على خدماتنا
             </Link>
           </div>
-          <p className="mt-4 text-sm text-muted">
+          <p className="mt-4 text-sm text-on-dark-muted">
             أو{" "}
             <a
               href={site.whatsappHref}
-              className="text-gold-bright underline decoration-gold/40 hover:text-gold"
+              className="text-whatsapp underline decoration-whatsapp/40 hover:brightness-110"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -60,9 +60,9 @@ export default function HomePage() {
       <HomeServicesFreer />
 
       {/* 3. Pain */}
-      <section className="section-pad bg-cream text-ink">
+      <section className="section-pad bg-surface-alt text-ink">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold sm:text-3xl">هل لديكم سؤال قانوني؟</h2>
+          <h2 className="text-2xl font-bold text-navy sm:text-3xl">هل لديكم سؤال قانوني؟</h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {painPoints.map((q) => (
               <li
@@ -73,7 +73,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-lg font-bold">
+          <p className="mt-8 text-center text-lg font-bold text-navy">
             اتصلوا الآن —{" "}
             <a href={site.phoneHref} className="text-navy underline decoration-gold" dir="ltr">
               <span className="tel-ltr">{site.phoneDisplay}</span>
@@ -83,38 +83,38 @@ export default function HomePage() {
       </section>
 
       {/* 4. خطوات العمل */}
-      <section className="section-pad bg-navy-deep" aria-labelledby="process-h2">
+      <section className="section-pad bg-navy" aria-labelledby="process-h2">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="mb-2 text-sm font-semibold tracking-wide text-gold">
             {site.process.label}
           </p>
-          <h2 id="process-h2" className="text-2xl font-bold text-cream sm:text-3xl">
+          <h2 id="process-h2" className="text-2xl font-bold text-white sm:text-3xl">
             {site.process.h2}
           </h2>
-          <p className="mt-3 max-w-2xl text-muted">{site.process.intro}</p>
+          <p className="mt-3 max-w-2xl text-on-dark-muted">{site.process.intro}</p>
           <ol className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-6">
             {site.process.steps.map((step) => (
               <li key={step.nr} className="flex gap-4 sm:flex-col sm:gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy font-bold text-gold">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy-deep font-bold text-gold">
                   {step.nr}
                 </span>
                 <div>
-                  <h3 className="text-lg font-bold text-cream">{step.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                  <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-on-dark-muted">
                     {step.body}
                   </p>
                 </div>
               </li>
             ))}
           </ol>
-          <p className="mt-8 text-sm text-muted">
+          <p className="mt-8 text-sm text-on-dark-muted">
             <a href={site.phoneHref} className="text-gold-bright hover:underline" dir="ltr">
               اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
             {" · "}
             <a
               href={site.whatsappHref}
-              className="text-gold-bright hover:underline"
+              className="text-whatsapp hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -125,9 +125,9 @@ export default function HomePage() {
       </section>
 
       {/* 5. Trust Proof-Strip */}
-      <section className="section-pad bg-navy" aria-labelledby="trust-label">
+      <section className="section-pad bg-cream" aria-labelledby="trust-label">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p id="trust-label" className="mb-6 text-center text-sm font-semibold tracking-wide text-gold">
+          <p id="trust-label" className="mb-6 text-center text-sm font-semibold tracking-wide text-navy">
             {site.trustLabel}
           </p>
           <div className="grid gap-8 sm:grid-cols-3 sm:gap-10">
@@ -136,7 +136,7 @@ export default function HomePage() {
                 key={card.title}
                 className={`px-1 py-2 sm:px-2 ${i > 0 ? "sm:border-s sm:border-gold/25 sm:ps-8" : ""}`}
               >
-                <p className="text-lg font-bold text-gold">{card.title}</p>
+                <p className="text-lg font-bold text-navy">{card.title}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{card.body}</p>
               </div>
             ))}
@@ -148,30 +148,30 @@ export default function HomePage() {
       </section>
 
       {/* 6. FAQ */}
-      <section id="faq" className="section-pad bg-navy-deep scroll-mt-24" aria-labelledby="faq-h2">
+      <section id="faq" className="section-pad bg-surface-alt scroll-mt-24" aria-labelledby="faq-h2">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="mb-2 text-sm font-semibold tracking-wide text-gold">
+          <p className="mb-2 text-sm font-semibold tracking-wide text-navy">
             {site.faq.label}
           </p>
-          <h2 id="faq-h2" className="text-2xl font-bold text-cream sm:text-3xl">
+          <h2 id="faq-h2" className="text-2xl font-bold text-navy sm:text-3xl">
             {site.faq.h2}
           </h2>
           <div className="mt-8 space-y-3">
             {site.faq.items.map((item) => (
               <details
                 key={item.q}
-                className="group rounded-card border border-gold/25 bg-navy open:border-gold/50"
+                className="group rounded-card border border-navy/10 bg-white open:border-gold/40"
               >
-                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-cream marker:content-none [&::-webkit-details-marker]:hidden">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-ink marker:content-none [&::-webkit-details-marker]:hidden">
                   <span>{item.q}</span>
                   <span
-                    className="shrink-0 text-gold transition group-open:rotate-180"
+                    className="shrink-0 text-gold-ink transition group-open:rotate-180"
                     aria-hidden
                   >
                     ▾
                   </span>
                 </summary>
-                <p className="border-t border-gold/15 px-4 py-3 text-sm leading-relaxed text-muted">
+                <p className="border-t border-navy/10 px-4 py-3 text-sm leading-relaxed text-muted">
                   {item.a}
                 </p>
               </details>
@@ -193,10 +193,10 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-navy/90" />
         </div>
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h2 className="text-2xl font-bold text-cream sm:text-3xl">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl">
             جاهزون للبدء؟ تواصلوا مع مكتب الأفوكاتو
           </h2>
-          <p className="mt-3 text-muted">
+          <p className="mt-3 text-on-dark-muted">
             مكالمة قصيرة أوضح من أيام من البحث دون نتيجة.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -205,7 +205,7 @@ export default function HomePage() {
             </a>
             <a
               href={site.whatsappHref}
-              className="btn-ghost inline-flex"
+              className="btn-whatsapp inline-flex"
               target="_blank"
               rel="noopener noreferrer"
             >

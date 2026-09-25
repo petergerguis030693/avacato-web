@@ -15,10 +15,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader image="about">
-        <h1 className="text-3xl font-bold text-cream sm:text-4xl">
+        <h1 className="text-3xl font-bold text-white sm:text-4xl">
           نبذة عن أعمال مكتبنا
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted">
+        <p className="mt-4 max-w-2xl text-lg text-on-dark-muted">
           مكتب الأفوكاتو للمحاماة والاستشارات القانونية — نخدم أفرادًا وشركات بنتيجة ملموسة: أوراق تُرتَّب وحقوق تُحفظ.
         </p>
         <a href={site.phoneHref} className="btn-gold mt-8 inline-flex" dir="ltr">
@@ -29,7 +29,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <div className="space-y-4 text-cream/90">
+            <div className="space-y-4 text-ink">
               <p>
                 نغطّي تأسيس الشركات والتراخيص والاستيراد والتصدير والإجراءات الحكومية، وكذلك القضايا المدنية والجنائية والأسرية وقضايا مجلس الدولة.
               </p>
@@ -44,14 +44,14 @@ export default function AboutPage() {
               {values.map((v) => (
                 <span
                   key={v}
-                  className="rounded-btn border border-gold/40 px-4 py-2 text-sm font-semibold text-gold"
+                  className="rounded-btn border border-gold/40 px-4 py-2 text-sm font-semibold text-gold-ink"
                 >
                   {v}
                 </span>
               ))}
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-gold/30">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-navy/10">
             <Image
               src="/images/law-books.jpg"
               alt="كتب قانونية"
