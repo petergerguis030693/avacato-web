@@ -5,7 +5,7 @@ import { getService } from "../../../lib/site";
 const service = getService("litigation")!;
 
 export const metadata: Metadata = {
-  title: service.metaTitle.replace(" | مكتب الأفوكاتو", ""),
+  title: { absolute: service.metaTitle },
   description: service.metaDescription,
   alternates: { canonical: service.href },
 };

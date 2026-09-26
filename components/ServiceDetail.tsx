@@ -6,27 +6,36 @@ import { PageHeader, type PageHeaderImageKey } from "./PageHeader";
 import { ServiceReveal } from "./ServiceReveal";
 import { getService, type Service, site } from "../lib/site";
 
-const COPY_LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
+const COPY_MARKUP_RE = /\*\*([^*]+)\*\*|\[([^\]]+)\]\(([^)]+)\)/g;
+const LITIGATION_WA_PREFILL = "مرحباً، أحتاج استشارة بخصوص القضايا";
 
-/** Renders copy-file markdown links with existing gold-ink underline tokens. */
-function CopyLinks({ text }: { text: string }) {
+/** Renders copy-file markdown links and **bold** with existing gold-ink tokens. */
+function CopyMarkup({ text }: { text: string }) {
   const nodes: ReactNode[] = [];
   let last = 0;
   let match: RegExpExecArray | null;
-  const re = new RegExp(COPY_LINK_RE.source, "g");
+  const re = new RegExp(COPY_MARKUP_RE.source, "g");
   while ((match = re.exec(text)) !== null) {
     if (match.index > last) {
       nodes.push(text.slice(last, match.index));
     }
-    nodes.push(
-      <Link
-        key={`${match[2]}-${match.index}`}
-        href={match[2]}
-        className="font-semibold text-gold-ink underline decoration-gold/50 underline-offset-4 hover:text-navy"
-      >
-        {match[1]}
-      </Link>,
-    );
+    if (match[1] != null) {
+      nodes.push(
+        <strong key={`b-${match.index}`} className="font-semibold">
+          {match[1]}
+        </strong>,
+      );
+    } else {
+      nodes.push(
+        <Link
+          key={`${match[3]}-${match.index}`}
+          href={match[3]!}
+          className="font-semibold text-gold-ink underline decoration-gold/50 underline-offset-4 hover:text-navy"
+        >
+          {match[2]}
+        </Link>,
+      );
+    }
     last = match.index + match[0].length;
   }
   if (last < text.length) {
@@ -38,20 +47,34 @@ function CopyLinks({ text }: { text: string }) {
 function DualCta({
   className = "",
   stretch = false,
+  bookConsult = false,
+  bookLabel,
 }: {
   className?: string;
   stretch?: boolean;
+  bookConsult?: boolean;
+  bookLabel?: string;
 }) {
   const width = stretch ? "w-full sm:w-auto" : "";
+  const waHref = bookConsult
+    ? `${site.whatsappHref}?text=${encodeURIComponent(LITIGATION_WA_PREFILL)}`
+    : site.whatsappHref;
+  const telClass = bookConsult ? "btn-ghost" : "btn-gold";
+
   return (
     <div
-      className={`flex flex-col items-stretch justify-start gap-3 sm:flex-row sm:items-center ${className}`}
+      className={`flex flex-col items-stretch justify-start gap-3 sm:flex-row sm:flex-wrap sm:items-center ${className}`}
     >
-      <a href={site.phoneHref} className={`btn-gold ${width}`} dir="ltr">
+      {bookConsult && bookLabel && (
+        <Link href="/contact/" className={`btn-gold ${width}`}>
+          {bookLabel}
+        </Link>
+      )}
+      <a href={site.phoneHref} className={`${telClass} ${width}`} dir="ltr">
         اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
       </a>
       <a
-        href={site.whatsappHref}
+        href={waHref}
         className={`btn-whatsapp ${width}`}
         target="_blank"
         rel="noopener noreferrer"
@@ -67,6 +90,12 @@ export function ServiceDetail({ service }: { service: Service }) {
     .map((slug) => getService(slug))
     .filter((s): s is Service => Boolean(s));
   const isLitigation = service.slug === "litigation";
+  const bookConsult = Boolean(service.ctaLabel);
+  const leadParagraphs = service.lead.split("\n\n");
+  const stepsCols =
+    service.steps.length > 3
+      ? "sm:grid-cols-2 xl:grid-cols-4 sm:gap-6"
+      : "sm:grid-cols-3 sm:gap-6";
 
   return (
     <ServiceReveal>
@@ -83,83 +112,38 @@ export function ServiceDetail({ service }: { service: Service }) {
           <h1 className="text-3xl font-bold text-white sm:text-4xl">
             {service.h1}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-on-dark-muted sm:text-lg">
-            {service.lead}
-          </p>
-          {isLitigation && (
-            <p className="mt-3 max-w-3xl text-sm text-gold-bright/90">
-              {site.litigationDisclaimer}
+          {service.sub && (
+            <p className="mt-3 text-lg font-semibold text-gold-bright sm:text-xl">
+              {service.sub}
             </p>
           )}
-          <DualCta className="mt-7" />
+          {leadParagraphs.map((para) => (
+            <p
+              key={para.slice(0, 32)}
+              className="mt-4 max-w-3xl text-base leading-relaxed text-on-dark-muted sm:text-lg"
+            >
+              <CopyMarkup text={para} />
+            </p>
+          ))}
+          <DualCta
+            className="mt-7"
+            bookConsult={bookConsult}
+            bookLabel={service.ctaLabel}
+          />
         </PageHeader>
 
         {/* Desktop 2-col · Mobile: CTA aside then zones */}
         <div className="border-b border-navy/10 bg-cream">
           <div className="detail-wrap grid py-10 lg:grid-cols-[minmax(0,1.62fr)_minmax(0,1fr)] lg:items-start lg:gap-12 lg:py-16 xl:gap-14">
             <div className="order-2 divide-y divide-navy/10 lg:order-1">
-              {/* المنفعة */}
-              <section className="detail-zone" data-reveal>
-                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
-                  {site.detail.benefit}
-                </h2>
-                <ul className="mt-8 grid gap-6">
-                  {service.benefits.map((item, i) => (
-                    <li
-                      key={item.title}
-                      data-reveal
-                      data-reveal-delay={i * 50}
-                    >
-                      <h3 className="text-lg font-bold text-ink">
-                        {item.title}
-                      </h3>
-                      <span
-                        className="mt-2 block h-px w-12 bg-gold"
-                        aria-hidden
-                      />
-                      <p className="mt-3 text-base leading-relaxed text-ink">
-                        {item.body}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              {/* نطاق العمل */}
-              <section
-                className="detail-zone"
-                data-reveal
-                id={service.slug === "companies" ? "liquidation" : undefined}
-              >
-                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
-                  {site.detail.deliverables}
-                </h2>
-                <ul className="mt-8 grid gap-3 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-3">
-                  {service.bullets.map((b, i) => (
-                    <li
-                      key={b}
-                      className="flex gap-3 text-ink"
-                      data-reveal
-                      data-reveal-delay={i * 45}
-                    >
-                      <span
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
-                        aria-hidden
-                      />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              {/* متى تحتاجون محاميًا — litigation only (Copy v7) */}
-              {service.whenYouNeed && (
+              {/* المنفعة — hidden on litigation (Copy v9: folded into hero) */}
+              {!isLitigation && service.benefits.length > 0 && (
                 <section className="detail-zone" data-reveal>
                   <h2 className="text-2xl font-bold text-navy sm:text-3xl">
-                    {service.whenYouNeed.title}
+                    {site.detail.benefit}
                   </h2>
                   <ul className="mt-8 grid gap-6">
-                    {service.whenYouNeed.items.map((item, i) => (
+                    {service.benefits.map((item, i) => (
                       <li
                         key={item.title}
                         data-reveal
@@ -173,23 +157,112 @@ export function ServiceDetail({ service }: { service: Service }) {
                           aria-hidden
                         />
                         <p className="mt-3 text-base leading-relaxed text-ink">
-                          <CopyLinks text={item.body} />
+                          {item.body}
                         </p>
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-8 text-base leading-relaxed text-ink">
-                    {service.whenYouNeed.softCta}
+                </section>
+              )}
+
+              {/* نطاق العمل / أنواع القضايا */}
+              {(service.scopeCards?.length || service.bullets.length > 0) && (
+                <section
+                  className="detail-zone"
+                  data-reveal
+                  id={service.slug === "companies" ? "liquidation" : undefined}
+                >
+                  <h2 className="text-2xl font-bold text-navy sm:text-3xl">
+                    {service.scopeLabel ?? site.detail.deliverables}
+                  </h2>
+                  {service.scopeCards?.length ? (
+                    <ul className="mt-8 grid gap-6 lg:grid-cols-2">
+                      {service.scopeCards.map((item, i) => (
+                        <li
+                          key={item.title}
+                          data-reveal
+                          data-reveal-delay={i * 45}
+                        >
+                          <h3 className="text-lg font-bold text-ink">
+                            {item.title}
+                          </h3>
+                          <span
+                            className="mt-2 block h-px w-12 bg-gold"
+                            aria-hidden
+                          />
+                          <p className="mt-3 text-base leading-relaxed text-ink">
+                            <CopyMarkup text={item.body} />
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <ul className="mt-8 grid gap-3 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-3">
+                      {service.bullets.map((b, i) => (
+                        <li
+                          key={b}
+                          className="flex gap-3 text-ink"
+                          data-reveal
+                          data-reveal-delay={i * 45}
+                        >
+                          <span
+                            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
+                            aria-hidden
+                          />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              )}
+
+              {/* متى تحتاجون — litigation only (Copy v9) */}
+              {service.whenYouNeed && (
+                <section className="detail-zone" data-reveal>
+                  <h2 className="text-2xl font-bold text-navy sm:text-3xl">
+                    {service.whenYouNeed.title}
+                  </h2>
+                  {service.whenYouNeed.intro && (
+                    <p className="mt-4 text-base leading-relaxed text-ink">
+                      {service.whenYouNeed.intro}
+                    </p>
+                  )}
+                  <ul className="mt-6 grid gap-3">
+                    {service.whenYouNeed.items.map((item, i) => (
+                      <li
+                        key={item}
+                        className="flex gap-3 text-ink"
+                        data-reveal
+                        data-reveal-delay={i * 45}
+                      >
+                        <span
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
+                          aria-hidden
+                        />
+                        <span>
+                          <CopyMarkup text={item} />
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  {service.whenYouNeed.closing && (
+                    <p className="mt-8 text-base leading-relaxed text-ink">
+                      <CopyMarkup text={service.whenYouNeed.closing} />
+                    </p>
+                  )}
+                  <p className="mt-4 text-base leading-relaxed text-ink">
+                    <CopyMarkup text={service.whenYouNeed.softCta} />
                   </p>
                 </section>
               )}
 
-              {/* خطوات العمل — exactly 3 steps */}
+              {/* خطوات العمل — 3 on other services, 4 on litigation */}
               <section className="detail-zone" data-reveal>
                 <h2 className="text-2xl font-bold text-navy sm:text-3xl">
-                  {site.detail.steps}
+                  {service.stepsLabel ?? site.detail.steps}
                 </h2>
-                <ol className="relative mt-10 grid gap-8 sm:grid-cols-3 sm:gap-6">
+                <ol className={`relative mt-10 grid gap-8 ${stepsCols}`}>
                   <span
                     aria-hidden
                     className="absolute bottom-0 end-4 top-0 w-px bg-gold/25 sm:hidden"
@@ -211,7 +284,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                             {step.title}
                           </h3>
                           <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                            {step.body}
+                            <CopyMarkup text={step.body} />
                           </p>
                         </div>
                       </li>
@@ -220,25 +293,27 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </ol>
               </section>
 
-              {/* لمن هذه الخدمة */}
-              <section className="detail-zone" data-reveal>
-                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
-                  {site.detail.audience}
-                </h2>
-                <ul className="mt-6 flex flex-wrap gap-2">
-                  {service.chips.map((chip) => (
-                    <li
-                      key={chip}
-                      className="rounded-btn border border-navy/15 bg-white px-3 py-1.5 text-sm text-ink"
-                    >
-                      {chip}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-base leading-relaxed text-ink">
-                  {service.audience}
-                </p>
-              </section>
+              {/* لمن هذه الخدمة — hidden on litigation (Copy v9: redundant) */}
+              {!isLitigation && (
+                <section className="detail-zone" data-reveal>
+                  <h2 className="text-2xl font-bold text-navy sm:text-3xl">
+                    {site.detail.audience}
+                  </h2>
+                  <ul className="mt-6 flex flex-wrap gap-2">
+                    {service.chips.map((chip) => (
+                      <li
+                        key={chip}
+                        className="rounded-btn border border-navy/15 bg-white px-3 py-1.5 text-sm text-ink"
+                      >
+                        {chip}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 text-base leading-relaxed text-ink">
+                    {service.audience}
+                  </p>
+                </section>
+              )}
 
               {/* أسئلة متكررة */}
               <section className="detail-zone" data-reveal>
@@ -261,7 +336,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                         </span>
                       </summary>
                       <p className="border-t border-navy/10 px-4 py-3 text-sm leading-relaxed text-muted">
-                        <CopyLinks text={item.a} />
+                        <CopyMarkup text={item.a} />
                       </p>
                     </details>
                   ))}
@@ -279,7 +354,12 @@ export function ServiceDetail({ service }: { service: Service }) {
                 <p className="text-sm font-semibold tracking-wide text-gold">
                   {site.detail.asideStart}
                 </p>
-                <DualCta className="mt-5" stretch />
+                <DualCta
+                  className="mt-5"
+                  stretch
+                  bookConsult={bookConsult}
+                  bookLabel={service.ctaLabel}
+                />
                 {isLitigation && (
                   <p className="mt-4 text-sm leading-relaxed text-gold-bright/90">
                     {site.litigationDisclaimer}
@@ -295,7 +375,9 @@ export function ServiceDetail({ service }: { service: Service }) {
                         className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
                         aria-hidden
                       />
-                      <span>{why}</span>
+                      <span>
+                        <CopyMarkup text={why} />
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -355,15 +437,21 @@ export function ServiceDetail({ service }: { service: Service }) {
           </div>
           <div className="relative mx-auto max-w-3xl px-4 py-12 text-center sm:px-6 lg:py-16">
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
-              {site.detail.finalH2}
+              {service.finalH2 ?? site.detail.finalH2}
             </h2>
-            <p className="mt-3 text-on-dark-muted">{site.detail.finalBody}</p>
+            <p className="mt-3 text-on-dark-muted">
+              <CopyMarkup text={service.finalBody ?? site.detail.finalBody} />
+            </p>
             {isLitigation && (
               <p className="mt-3 text-sm text-gold-bright/90">
                 {site.litigationDisclaimer}
               </p>
             )}
-            <DualCta className="mt-8 justify-center sm:justify-center" />
+            <DualCta
+              className="mt-8 justify-center sm:justify-center"
+              bookConsult={bookConsult}
+              bookLabel={service.ctaLabel}
+            />
           </div>
         </section>
       </article>
