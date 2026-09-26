@@ -21,7 +21,8 @@ Forbidden families (and close variants):
 - هل تضمنون كسب القضية؟ / هل يمكن ضمان كسب القضية؟
 - لا يمكن ضمان نتيجة أي قضية
 - بلا وعود فارغة (when tied to case or process outcomes)
-- Meta / title / description / OG / JSON-LD that mention ضمان نتيجة or كسب القضية
+- وعود عامة / لا وعود عامة / لا بوعود عامة / مش وعود عامة / بوعود عامة
+- Meta / title / description / OG / JSON-LD that mention ضمان نتيجة or كسب القضية or وعود عامة
 
 ## Allowed after deletion
 
@@ -36,4 +37,9 @@ Peter-approved litigation narrative (diligence / working toward the best possibl
 
 Live source of truth: `lib/site.ts` + pages/components. Align current copy docs (`ar-eg-copy-v8-home.md`, `ar-eg-copy-v9-litigation.md`) with live strings. Historical v1–v5 snapshots are not shipped.
 
-Litigation Care-Block (title + 3 paragraphs above) is a dedicated H2 zone (`service.careBlock`) — not hero `lead`, not `litigationDisclaimer`, not asideWhy, not the only `finalBody`.
+Litigation Care-Block (title + 3 paragraphs above) is a dedicated H2 zone (`service.careBlock`) — not hero `lead`, not `litigationDisclaimer`, not asideWhy, not the only `finalBody`. Do not restyle that zone in this follow-up.
+
+**2026-09-26 Soft-Deploy follow-up (sitewide `وعود عامة`):** drop the phrase — do not rewrite into a no-promise disclaimer.
+
+- `/services` H1 (Peter override): `خدمات قانونية متكاملة لحماية حقوقكم ومصالحكم` (keep the existing sub about أوراق جاهزة / رخصة سارية / مسار قانوني).
+- `/services/gov` المنفعة «أعمالكم لا تنتظر ورقة»: `الإجراءات التي يتوقف عليها النشاط تتحرك بمتابعة دقيقة حتى الإنهاء.`
