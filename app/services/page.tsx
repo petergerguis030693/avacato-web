@@ -14,7 +14,7 @@ export default function ServicesPage() {
     <>
       <PageHeader image="services">
         <h1 className="text-3xl font-bold text-white sm:text-4xl">
-          خدمات بنتيجة واضحة… لا وعود عامة
+          خدمات بنتيجة واضحة
         </h1>
         <p className="mt-4 max-w-2xl text-on-dark-muted">
           لكل خدمة نتيجة محددة: أوراق جاهزة، رخصة سارية، أو مسار قانوني تعرفونه من أول اجتماع.
