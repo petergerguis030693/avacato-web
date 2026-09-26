@@ -91,7 +91,10 @@ export function ServiceDetail({ service }: { service: Service }) {
     .filter((s): s is Service => Boolean(s));
   const isLitigation = service.slug === "litigation";
   const bookConsult = Boolean(service.ctaLabel);
-  const leadParagraphs = service.lead.split("\n\n");
+  const leadParagraphs = service.lead
+    .split("\n\n")
+    .filter((para) => para.trim().length > 0);
+  const showDisclaimer = Boolean(site.litigationDisclaimer.trim());
   const stepsCols =
     service.steps.length > 3
       ? "sm:grid-cols-2 xl:grid-cols-4 sm:gap-6"
@@ -136,6 +139,25 @@ export function ServiceDetail({ service }: { service: Service }) {
         <div className="border-b border-navy/10 bg-cream">
           <div className="detail-wrap grid py-10 lg:grid-cols-[minmax(0,1.62fr)_minmax(0,1fr)] lg:items-start lg:gap-12 lg:py-16 xl:gap-14">
             <div className="order-2 divide-y divide-navy/10 lg:order-1">
+              {/* Care-Block — own H2 zone (litigation); after hero, before scope */}
+              {service.careBlock && (
+                <section className="detail-zone" data-reveal>
+                  <h2 className="text-2xl font-bold text-navy sm:text-3xl">
+                    {service.careBlock.title}
+                  </h2>
+                  <div className="mt-6 max-w-3xl space-y-4">
+                    {service.careBlock.paragraphs.map((para) => (
+                      <p
+                        key={para.slice(0, 32)}
+                        className="text-base leading-relaxed text-ink"
+                      >
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               {/* المنفعة — hidden on litigation (Copy v9: folded into hero) */}
               {!isLitigation && service.benefits.length > 0 && (
                 <section className="detail-zone" data-reveal>
@@ -360,7 +382,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                   bookConsult={bookConsult}
                   bookLabel={service.ctaLabel}
                 />
-                {isLitigation && (
+                {isLitigation && showDisclaimer && (
                   <p className="mt-4 text-sm leading-relaxed text-gold-bright/90">
                     {site.litigationDisclaimer}
                   </p>
@@ -442,7 +464,7 @@ export function ServiceDetail({ service }: { service: Service }) {
             <p className="mt-3 text-on-dark-muted">
               <CopyMarkup text={service.finalBody ?? site.detail.finalBody} />
             </p>
-            {isLitigation && (
+            {isLitigation && showDisclaimer && (
               <p className="mt-3 text-sm text-gold-bright/90">
                 {site.litigationDisclaimer}
               </p>

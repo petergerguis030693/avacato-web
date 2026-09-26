@@ -125,8 +125,8 @@ export const site = {
     teaser: "تصفية · نقل ملكية · بيع — تخرجون بأوراق قانونية سليمة",
     href: "/services/companies/#liquidation",
   },
-  litigationDisclaimer:
-    "ندرس قضيتك بعناية ونعمل معك لتحقيق أفضل النتائج",
+  /** Empty = hide aside/CTA disclaimer slots (Care lives in its own H2 zone). */
+  litigationDisclaimer: "",
   labels: {
     callNow: "اتصل الآن",
     whatsapp: "واتساب",
@@ -186,6 +186,12 @@ export type ServiceScopeCard = {
   body: string;
 };
 
+/** Optional H2 prose zone — litigation Care-Block (Peter 1:1). */
+export type ServiceCareBlock = {
+  title: string;
+  paragraphs: string[];
+};
+
 export type Service = {
   slug: ServiceSlug;
   href: string;
@@ -196,7 +202,10 @@ export type Service = {
   h1: string;
   /** Hero subtitle — litigation Copy v9 */
   sub?: string;
+  /** Hero lead paragraphs; omit or empty to show H1 + Sub only */
   lead: string;
+  /** Own H2 content zone after hero — litigation Care-Block */
+  careBlock?: ServiceCareBlock;
   /** 3 benefit lines (title + body) — Spec v1.5 المنفعة; litigation omits (folded into hero) */
   benefits: ServiceBenefit[];
   bullets: string[];
@@ -548,7 +557,15 @@ export const services: Service[] = [
       "مكتب الأفوكاتو — استشارات وتمثيل قانوني في القضايا الجنائية والمدنية والتجارية والعمالية والأحوال الشخصية. نوضّح موقفكم. تواصلوا: 01123027887",
     h1: "محامي قضايا في مصر",
     sub: "استشارات وتمثيل قانوني للأفراد والشركات",
-    lead: "القضايا والنزاعات تحتاج دراسة دقيقة للوقائع والمستندات والإجراءات — حتى تعرفون موقفكم القانوني وتتخذون القرار المناسب.\n\nفي مكتب الأفوكاتو، نولي كل قضية الاهتمام الذي تستحقه، ونحرص على دراسة جميع التفاصيل والمستندات والأدلة بعناية، مع إعداد استراتيجية قانونية مدروسة وتحضير شامل لكل مرحلة من مراحل القضية.\n\nنؤمن بأن التعاون المستمر مع عملائنا، إلى جانب الدراسة الدقيقة والتحضير الجيد، يشكل أساسًا قويًا للعمل نحو تحقيق أفضل النتائج القانونية الممكنة.",
+    lead: "",
+    careBlock: {
+      title: "ندرس قضيتك بعناية ونعمل معك لتحقيق أفضل النتائج",
+      paragraphs: [
+        "في مكتب الأفوكاتو، نولي كل قضية الاهتمام الذي تستحقه، ونحرص على دراسة جميع التفاصيل والمستندات والأدلة بعناية، مع إعداد استراتيجية قانونية مدروسة وتحضير شامل لكل مرحلة من مراحل القضية.",
+        "نؤمن بأن التعاون المستمر مع عملائنا، إلى جانب الدراسة الدقيقة والتحضير الجيد، يشكل أساسًا قويًا للعمل نحو تحقيق أفضل النتائج القانونية الممكنة.",
+        "قضيتك مسؤوليتنا، ونعمل معك بكل جدية للوصول إلى أفضل نتيجة ممكنة.",
+      ],
+    },
     benefits: [],
     bullets: [],
     scopeLabel: "أنواع القضايا التي نتعامل معها",
@@ -650,7 +667,7 @@ export const services: Service[] = [
     ctaLabel: "احجز استشارتك القانونية",
     finalH2: "هل تحتاجون إلى استشارة قانونية؟",
     finalBody:
-      "قضيتك مسؤوليتنا، ونعمل معك بكل جدية للوصول إلى أفضل نتيجة ممكنة.",
+      "إن واجهتم قضية أو نزاعًا قانونيًا، تواصلوا مع مكتب الأفوكاتو — نناقش موقفكم ونوضّح الإجراءات المتاحة.",
   },
   {
     slug: "real-estate",

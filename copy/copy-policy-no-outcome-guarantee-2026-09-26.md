@@ -35,3 +35,5 @@ Peter-approved litigation narrative (diligence / working toward the best possibl
 - قضيتك مسؤوليتنا، ونعمل معك بكل جدية للوصول إلى أفضل نتيجة ممكنة.
 
 Live source of truth: `lib/site.ts` + pages/components. Align current copy docs (`ar-eg-copy-v8-home.md`, `ar-eg-copy-v9-litigation.md`) with live strings. Historical v1–v5 snapshots are not shipped.
+
+Litigation Care-Block (title + 3 paragraphs above) is a dedicated H2 zone (`service.careBlock`) — not hero `lead`, not `litigationDisclaimer`, not asideWhy, not the only `finalBody`.
