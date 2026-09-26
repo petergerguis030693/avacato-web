@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "../lib/site";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 export function Footer() {
   return (
@@ -39,14 +40,9 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a
-                href={site.whatsappHref}
-                className="font-semibold text-whatsapp hover:brightness-110"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <WhatsAppLink className="inline-flex items-center gap-1.5 font-semibold text-whatsapp hover:brightness-110">
                 واتساب
-              </a>
+              </WhatsAppLink>
             </li>
             <li className="leading-relaxed">{site.addressShort}</li>
           </ul>

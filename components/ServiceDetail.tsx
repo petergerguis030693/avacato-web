@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { FeaturedRow } from "./FeaturedRow";
 import { PageHeader, type PageHeaderImageKey } from "./PageHeader";
 import { ServiceReveal } from "./ServiceReveal";
+import { WhatsAppLink } from "./WhatsAppLink";
 import { getService, type Service, site } from "../lib/site";
 
 const COPY_MARKUP_RE = /\*\*([^*]+)\*\*|\[([^\]]+)\]\(([^)]+)\)/g;
@@ -73,14 +74,9 @@ function DualCta({
       <a href={site.phoneHref} className={`${telClass} ${width}`} dir="ltr">
         اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
       </a>
-      <a
-        href={waHref}
-        className={`btn-whatsapp ${width}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <WhatsAppLink href={waHref} className={`btn-whatsapp ${width}`}>
         {site.labels.talkWhatsapp}
-      </a>
+      </WhatsAppLink>
     </div>
   );
 }

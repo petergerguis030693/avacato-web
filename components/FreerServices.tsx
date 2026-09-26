@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Service } from "../lib/site";
 import { services, site } from "../lib/site";
 import { FeaturedRow } from "./FeaturedRow";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 /** Spec v1.4: تأسيس الشركات · التراخيص · القضايا */
 export const FEATURED_SLUGS = [
@@ -29,14 +30,7 @@ function DualCta({ className = "" }: { className?: string }) {
       <a href={site.phoneHref} className="btn-gold" dir="ltr">
         اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
       </a>
-      <a
-        href={site.whatsappHref}
-        className="btn-whatsapp"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {site.labels.talkWhatsapp}
-      </a>
+      <WhatsAppLink>{site.labels.talkWhatsapp}</WhatsAppLink>
     </div>
   );
 }
