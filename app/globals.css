@@ -145,13 +145,16 @@ body {
   background: rgb(var(--color-gold-rgb) / 0.08);
 }
 
-/* WhatsApp — official green, navy label for AA contrast */
+/* WhatsApp — official green, navy label for AA contrast.
+   Spot: icon+label in existing Dual-CTA; touch target ≥44px (both axes);
+   layout otherwise frozen. */
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   min-height: 44px;
+  min-width: 44px;
   padding: 0.75rem 1.5rem;
   background: var(--color-whatsapp);
   color: var(--color-whatsapp-text);

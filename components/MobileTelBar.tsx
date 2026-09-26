@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { site } from "../lib/site";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 /** Fixed dual CTA bar — hidden on /contact where the form needs the space. */
 export function MobileTelBar() {
@@ -24,14 +25,9 @@ export function MobileTelBar() {
         >
           اتصال
         </a>
-        <a
-          href={site.whatsappHref}
-          className="btn-whatsapp w-full text-center text-sm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <WhatsAppLink className="btn-whatsapp w-full text-center text-sm">
           واتساب
-        </a>
+        </WhatsAppLink>
       </div>
     </div>
   );
