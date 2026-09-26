@@ -41,5 +41,5 @@ Litigation Care-Block (title + 3 paragraphs above) is a dedicated H2 zone (`serv
 
 **2026-09-26 Soft-Deploy follow-up (sitewide `وعود عامة`):** drop the phrase — do not rewrite into a no-promise disclaimer.
 
-- `/services` H1: `خدمات بنتيجة واضحة` (keep the existing sub about أوراق جاهزة / رخصة سارية / مسار قانوني).
-- `/services/gov` المنفعة «أعمالكم لا تنتظر ورقة»: `الإجراءات التي يتوقف عليها النشاط تتحرك بمتابعة.`
+- `/services` H1 (Peter override): `خدمات قانونية متكاملة لحماية حقوقكم ومصالحكم` (keep the existing sub about أوراق جاهزة / رخصة سارية / مسار قانوني).
+- `/services/gov` المنفعة «أعمالكم لا تنتظر ورقة»: `الإجراءات التي يتوقف عليها النشاط تتحرك بمتابعة دقيقة حتى الإنهاء.`
