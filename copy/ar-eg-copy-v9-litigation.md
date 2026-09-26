@@ -7,6 +7,8 @@
 
 **Changelog v9:** Peter Intent SEO-Landing. Meta Title Intent exakt. H1 «محامي قضايا في مصر». 7 أنواع القضايا Cards (statt نطاق العمل). متى تحتاج (أنتم). **4 خطوات**. FAQ without case-outcome guarantee Q. CTA-Label «احجز…» → Contact/Tel/WA (kein Fake-Booking). Related companies→real-estate→gov. المنفعة entfernt (in Hero aufgegangen). Register EG راقٍ — nicht MSA 1:1.
 
+**Follow-up (Care plural · Soft-Deploy GO):** Care H2 + ¶3 second-person أنتم (`قضيتكم` / `معكم`). ¶1 + ¶2 unchanged. Layout freeze.
+
 ---
 
 ## Meta
@@ -35,10 +37,10 @@
 
 **Platz:** direkt nach Hero-CTAs, vor «أنواع القضايا» · **nicht** in `lead`, `litigationDisclaimer`, asideWhy oder Final-CTA.
 
-- **H2:** ندرس قضيتك بعناية ونعمل معك لتحقيق أفضل النتائج
+- **H2:** ندرس قضيتكم بعناية ونعمل معكم لتحقيق أفضل النتائج
 - **¶1:** في مكتب الأفوكاتو، نولي كل قضية الاهتمام الذي تستحقه، ونحرص على دراسة جميع التفاصيل والمستندات والأدلة بعناية، مع إعداد استراتيجية قانونية مدروسة وتحضير شامل لكل مرحلة من مراحل القضية.
 - **¶2:** نؤمن بأن التعاون المستمر مع عملائنا، إلى جانب الدراسة الدقيقة والتحضير الجيد، يشكل أساسًا قويًا للعمل نحو تحقيق أفضل النتائج القانونية الممكنة.
-- **¶3:** قضيتك مسؤوليتنا، ونعمل معك بكل جدية للوصول إلى أفضل نتيجة ممكنة.
+- **¶3:** قضيتكم مسؤوليتنا، ونعمل معكم بكل جدية للوصول إلى أفضل نتيجة ممكنة.
 
 ---
 
