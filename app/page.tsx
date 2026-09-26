@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { HomeServicesFreer } from "../components/FreerServices";
+import { WhatsAppLink } from "../components/WhatsAppLink";
 import { painPoints, site } from "../lib/site";
 
 const COPY_LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
@@ -72,14 +73,7 @@ export default function HomePage() {
             <a href={site.phoneHref} className="btn-gold" dir="ltr">
               اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
-            <a
-              href={site.whatsappHref}
-              className="btn-whatsapp"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              تواصل عبر واتساب
-            </a>
+            <WhatsAppLink>تواصل عبر واتساب</WhatsAppLink>
             <Link href="/services/" className="btn-ghost">
               اطّلعوا على خدماتنا
             </Link>
@@ -143,14 +137,9 @@ export default function HomePage() {
               اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
             {" · "}
-            <a
-              href={site.whatsappHref}
-              className="text-whatsapp hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <WhatsAppLink className="inline-flex items-center gap-1.5 text-whatsapp hover:underline">
               أو تواصل عبر واتساب
-            </a>
+            </WhatsAppLink>
           </p>
         </div>
       </section>
@@ -240,14 +229,9 @@ export default function HomePage() {
             <a href={site.phoneHref} className="btn-gold inline-flex" dir="ltr">
               اتصل الآن — <span className="tel-ltr">{site.phoneDisplay}</span>
             </a>
-            <a
-              href={site.whatsappHref}
-              className="btn-whatsapp inline-flex"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <WhatsAppLink className="btn-whatsapp inline-flex">
               تواصل عبر واتساب
-            </a>
+            </WhatsAppLink>
           </div>
           <p className="mt-5 text-sm text-on-dark-muted">
             {site.home.disclaimer}

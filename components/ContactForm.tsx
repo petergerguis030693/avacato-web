@@ -2,6 +2,7 @@
 
 import { FormEvent, useRef, useState } from "react";
 import { site } from "../lib/site";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 type Errors = Partial<Record<"name" | "phone" | "message", string>>;
 
@@ -64,14 +65,7 @@ export function ContactForm() {
           <a href={site.phoneHref} className="btn-gold" dir="ltr">
             اتصل — <span className="tel-ltr">{site.phoneDisplay}</span>
           </a>
-          <a
-            href={site.whatsappHref}
-            className="btn-whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {site.labels.talkWhatsapp}
-          </a>
+          <WhatsAppLink>{site.labels.talkWhatsapp}</WhatsAppLink>
         </div>
       </div>
     );
