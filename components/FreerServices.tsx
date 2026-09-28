@@ -64,7 +64,7 @@ export function HomeServicesFreer() {
           خدماتنا
         </h2>
         <p className="mt-3 max-w-xl text-muted sm:mt-4">
-          من تأسيس الشركة إلى التراخيص والقضايا — كل ما يخص أعمالكم القانونية.
+          خدمات قانونية متخصصة في تأسيس الشركات والتراخيص والتقاضي والمعاملات العقارية
         </p>
 
         <div className="mt-10 flex flex-col gap-6 sm:mt-12 sm:gap-8">
