@@ -111,10 +111,14 @@ export function ServiceDetail({ service }: { service: Service }) {
           <h1 className="text-3xl font-bold text-white sm:text-4xl">
             {service.h1}
           </h1>
-          {service.sub && (
+          {service.sub ? (
             <p className="mt-3 text-lg font-semibold text-gold-bright sm:text-xl">
               {service.sub}
             </p>
+          ) : (
+            <h2 className="mt-3 text-lg font-semibold text-gold-bright sm:text-xl">
+              {site.detail.result}
+            </h2>
           )}
           {leadParagraphs.map((para) => (
             <p
@@ -154,7 +158,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </section>
               )}
 
-              {/* المنفعة — hidden on litigation (Copy v9: folded into hero) */}
+              {/* كيف يمكننا مساعدتك؟ — hidden on litigation (Copy v9: folded into hero) */}
               {!isLitigation && service.benefits.length > 0 && (
                 <section className="detail-zone" data-reveal>
                   <h2 className="text-2xl font-bold text-navy sm:text-3xl">
@@ -183,7 +187,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </section>
               )}
 
-              {/* نطاق العمل / أنواع القضايا */}
+              {/* خدماتنا في هذا المجال / أنواع القضايا */}
               {(service.scopeCards?.length || service.bullets.length > 0) && (
                 <section
                   className="detail-zone"
@@ -275,7 +279,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </section>
               )}
 
-              {/* خطوات العمل — 3 on other services, 4 on litigation */}
+              {/* مراحل تقديم الخدمة — 3 on other services, 4 on litigation */}
               <section className="detail-zone" data-reveal>
                 <h2 className="text-2xl font-bold text-navy sm:text-3xl">
                   {service.stepsLabel ?? site.detail.steps}
@@ -311,7 +315,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </ol>
               </section>
 
-              {/* لمن هذه الخدمة — hidden on litigation (Copy v9: redundant) */}
+              {/* الفئات المستفيدة من الخدمة — hidden on litigation (Copy v9: redundant) */}
               {!isLitigation && (
                 <section className="detail-zone" data-reveal>
                   <h2 className="text-2xl font-bold text-navy sm:text-3xl">
