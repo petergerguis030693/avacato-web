@@ -134,15 +134,16 @@ export const site = {
     stickyWhatsapp: "واتساب",
     talkWhatsapp: "تواصل عبر واتساب",
   },
-  /** Service-detail zone labels — Copy v6.0.1 Register */
+  /** Service-detail zone labels — About Soft-Deploy §9 (Peter 1:1) */
   detail: {
-    benefit: "المنفعة",
-    deliverables: "نطاق العمل",
-    steps: "خطوات العمل",
-    audience: "لمن هذه الخدمة",
+    result: "نبذة عن الخدمة",
+    benefit: "كيف يمكننا مساعدتك؟",
+    deliverables: "خدماتنا في هذا المجال",
+    steps: "مراحل تقديم الخدمة",
+    audience: "الفئات المستفيدة من الخدمة",
     faq: "أسئلة متكررة",
     asideStart: "ابدأ من هنا",
-    asideWhy: "لماذا هذه الخدمة",
+    asideWhy: "ما الذي نقدمه لك؟",
     related: "خدمات مرتبطة",
     finalH2: "هل تحتاجون هذه الخدمة؟",
     finalBody: "اتصلوا بنا أو تواصلوا عبر واتساب — نوضّح لكم الخطوة التالية بوضوح.",
